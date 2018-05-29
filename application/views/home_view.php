@@ -1,5 +1,3 @@
-<?php echo $this->session->userdata('nick'); ?>
-
 <!doctype html>
 <html lang="es">
   <head>
@@ -45,7 +43,7 @@
         <div class="user_nav">
           <div class="dropdown">
             <button class="btn_user dropdown-toggle" type="button" id="drop_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              #user
+              <?php echo $this->session->userdata('nick'); ?>
             </button>
             <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
               <a class="dropdown-item" href="#">Perfil</a>
@@ -77,7 +75,7 @@
 
           if ($row->imagen != NULL) {
             echo '<div class="grid_items">
-                  <div class="card rounded-0 mb-3">';
+                  <div class="card rounded-0 mb-3 shadow">';
             $data = $row->imagen;
             echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
 
