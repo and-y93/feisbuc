@@ -119,7 +119,7 @@ body {
 
 .grid_home{
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr minmax(100px, 3fr);
   grid-gap: .3em;
 }
 

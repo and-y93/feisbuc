@@ -31,9 +31,9 @@
         </ul>
       </div>
       <!-- === Logo F === -->
-      <div class="grid_nav_1 logo_home">
+      <!-- <div class="grid_nav_1 logo_home">
         <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/formulariologin"><h1>F</h1></a> 
-      </div>
+      </div> -->
       <!-- === Panel user === -->
       <div class="grid_nav_1 mr-3">
         <!-- <form class="form-inline my-2 my-lg-0">
@@ -60,16 +60,21 @@
     <!-- === Mensajes === -->
     <div class="grid_home">
       <div class="grid_box_1">
-        
+        <!-- caja gris -->
       </div>
 
       <div class="grid_box_2">
+      <div class="caja_mensaje mt-3 d-flex justify-content-center">
+        <button type="button" class="btn btn-feisbuk rounded-0 shadow-sm" data-toggle="modal" data-target="#exampleModalCenter">
+          Crear mensaje
+        </button>
+      </div>
+        
         <?php 
-
         foreach ($query->result() as $row) { 
 
         echo '<div class="grid_items">
-          <div class="card rounded-0 mb-3">
+          <div class="card rounded-0 mb-3 shadow">
           <img class="card-img-top" src="http://lorempixel.com/780/180/" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
@@ -81,6 +86,39 @@
         } 
         ?>
 
+      </div>
+
+      <!-- === Modal === -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content rounded-0">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Crear mensaje</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- === Form Crear mensaje === -->
+              <form>
+                <div class="form-group">
+                  <label for="menssage_imagen">Subir imagen</label>
+                  <input type="file" class="form-control-file" id="menssage_imagen">
+
+                  <label for="message_title" class="col-form-label">Título:</label>
+                  <input class="form-control" id="message_title" name="message_title"></input>
+
+                  <label for="message_text" class="col-form-label">Mensaje:</label>
+                  <textarea class="form-control" id="message_text" name="message_text"></textarea>
+                </div>
+              </form>
+              <div class="d-flex justify-content-center">
+                <!-- <button type="button" class="btn btn-secondary btn-sm rounded-0" data-dismiss="modal">Close</button> -->
+                <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0">Enviar</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
