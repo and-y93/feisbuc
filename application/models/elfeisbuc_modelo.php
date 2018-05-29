@@ -32,6 +32,9 @@ class elfeisbuc_modelo extends CI_Model
       $row = $query->row_array();
 
       if ($row['pass'] == $pass) {
+        $this->load->library('session');
+        $this->session->set_userdata(array('nick' => $nick));
+        //print_r($this->session->userdata('nick'));
         return 1;
       }
 
@@ -49,16 +52,16 @@ class elfeisbuc_modelo extends CI_Model
   }
 
 
-  public function obtenerMSG() {
+  public function obtenerMsg() {
 
-    $queryTodosMensajes = $this->db->query('SELECT fecha, titulo, cuerpo, nick_msg FROM msg UNION ALL SELECT fecha_img, titulo_img, img, nick_img FROM img');
+    $queryTodosMensajes = $this->db->query('SELECT * FROM msg');
     return $queryTodosMensajes;
   }
 
   public function obtenerIMG() {
 
     $queryTodasImagenes = $this->db->query('SELECT * FROM img');
-    return $queryTodasImagenes;
+    return $query;
   }
 
   /*public function obtenerMsgPropios() {
