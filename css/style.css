@@ -95,14 +95,16 @@ body {
   color: #fff;
   margin-right: 10px;
   padding: 10px;
-
 }
 
 .logo_home{
   color: #fff;
   text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.75);
 }
-
+.logo_home a {
+  color: #fff;
+  text-decoration: none !important;
+}
 .link-feisbuc:hover{
 
   text-decoration: none;
@@ -112,7 +114,7 @@ body {
 
 .grid_box_1{
   background-color: rgba(219, 219, 219, .3);
-  height: 100vh;
+  height: 100%;
 }
 
 .grid_home{
@@ -131,4 +133,26 @@ body {
 
 .nav-faisbuc:hover{
   color: rgba(255, 255, 255, 1) !important;
+}
+
+.footer_inside{
+  background-color: rgba(219, 219, 219, .3);;
+  height: 5rem;
+  color: #4267B2;
+  text-decoration: none;
+}
+
+.avatar_user{
+  height: 2.5em;
+  width: auto;
+}
+
+.btn_user{
+  background: none;
+  border: none;
+  color: #fff;
+}
+
+.btn_user:focus{
+  border:solid 1px #fff;
 }

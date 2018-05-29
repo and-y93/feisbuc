@@ -13,6 +13,7 @@
   </head>
   <body>
     <nav class="navbar navbar navbar-expand-lg navbar-feisbuc d-flex justify-content-between align-items-center">
+      <!-- === Links === -->
       <div class="grid_nav_1 links_home ml-3">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -24,19 +25,35 @@
           <li class="nav-item">
             <a href="#" class="nav-link nav-faisbuc">Mensajes</a>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link nav-faisbuc">Mis fotos</a>
+          </li>
         </ul>
-        
-        
-        
       </div>
+      <!-- === Logo F === -->
       <div class="grid_nav_1 logo_home">
-        <h1>F</h1>
+        <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/formulariologin"><h1>F</h1></a> 
       </div>
+      <!-- === Panel user === -->
       <div class="grid_nav_1 mr-3">
-        <form class="form-inline my-2 my-lg-0">
+        <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2 rounded-0" type="search" placeholder="Buscar en Feisbuc..." aria-label="Search">
           <button class="btn btn-outline-light my-2 my-sm-0 rounded-0" type="submit">Buscar</button>
-        </form>
+        </form> -->
+        <div class="user_nav">
+          <div class="dropdown">
+            <button class="btn_user dropdown-toggle" type="button" id="drop_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              #user
+            </button>
+            <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
+              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="#">Ajustes</a>
+              <a class="dropdown-item" href="#">Salir</a>
+            </div>
+            <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
+          </div>
+        </div>
+
       </div>
     </nav>
 
