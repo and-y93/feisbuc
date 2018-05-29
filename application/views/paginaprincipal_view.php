@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/style.css">
 
-    <title>El Feisbuc </title>
+    <title>Feisbuc</title>
   </head>
   <body>
     
     <div class="inicio_view d-flex justify-content-center align-items-center">
       <div class="grid_title">
         <div class="text-center">
-         <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/login"><h1>El Feisbuc</h1></a> 
+         <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller"><h1>Feisbuc</h1></a> 
           <h3>Es gratis y sin anuncios</h3>
         </div>
         <div class="box_links d-flex justify-content-center mt-3">
@@ -24,6 +24,7 @@
           <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/registro" class="btn btn-warning shadow rounded-0 ml-1">Registrarse</a>
         </div>
       </div>
+      
       
     </div>
 

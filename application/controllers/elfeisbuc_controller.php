@@ -5,19 +5,18 @@ class elfeisbuc_controller extends CI_Controller {
 		public function index(){
         	$this->load->helper(array('form', 'url'));
         	$this->load->view('paginaprincipal_view');
-        	$this->load->view('footer_view');
+            $this->load->view('footer_view');
 		}
 
 		public function registro(){
 			$this->load->helper(array('form', 'url'));
         	$this->load->view('register_view');
-        	$this->load->view('footer_view');			
+		
 		}
 
         public function login() {
         	$this->load->helper(array('form', 'url'));
         	$this->load->view('login_view');
-        	$this->load->view('footer_view');
         }
 
         public function mipagina(){
@@ -47,14 +46,14 @@ class elfeisbuc_controller extends CI_Controller {
                 if ($this->form_validation->run() == FALSE) {
             			$this->load->helper(array('form', 'url'));
         				$this->load->view('register_view');
-        				$this->load->view('footer_view');
+        				
                 }
                 else {
                 		$this->elfeisbuc_modelo->crearUser();
                 		echo "<script>alert('El usuario ha sido creado con éxito.')</script>";
                     	$this->load->helper('url');
         				$this->load->view('login_view');
-        				$this->load->view('footer_view');
+        				
                 }
         }
 
@@ -73,7 +72,7 @@ class elfeisbuc_controller extends CI_Controller {
             if ($this->form_validation->run() == FALSE) {
             			$this->load->helper(array('form', 'url'));
         				$this->load->view('login_view');
-        				$this->load->view('footer_view');
+        				
                 }
                 else {
 
@@ -85,13 +84,13 @@ class elfeisbuc_controller extends CI_Controller {
                 	if ($this->elfeisbuc_modelo->validarUser() == 2){
                 		echo "<script>alert('La contraseña introducida no es correcta.')</script>";
         				$this->load->view('login_view');
-        				$this->load->view('footer_view');
+        				
                 	}
 
                 	else if ($this->elfeisbuc_modelo->validarUser() == 3){
                 		echo "<script>alert('El usuario introducido no existe.')</script>";
         				$this->load->view('login_view');
-        				$this->load->view('footer_view');
+        				
 			        }	
                 }                       
         }
