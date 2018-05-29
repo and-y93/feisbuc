@@ -24,6 +24,9 @@
           <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/registro" class="btn btn-warning shadow rounded-0 ml-1">Registrarse</a>
         </div>
       </div>
+      <footer class="text-white fixed-bottom d-flex justify-content-center">
+          Feisbuc © 2018
+      </footer>
       
       
     </div>

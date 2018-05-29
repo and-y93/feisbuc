@@ -5,7 +5,6 @@ class elfeisbuc_controller extends CI_Controller {
 		public function index(){
         	$this->load->helper(array('form', 'url'));
         	$this->load->view('paginaprincipal_view');
-            $this->load->view('footer_view');
 		}
 
 		public function registro(){
@@ -30,8 +29,8 @@ class elfeisbuc_controller extends CI_Controller {
                 $this->load->library('form_validation');
                 $this->load->model('elfeisbuc_modelo', '', TRUE);
 
-                $this->form_validation->set_rules('user_register', 'Nombre de usuario', 'required|is_unique[user.nick]', 
-            			array('required' => 'El nombre de usuario es necesario.', 'is_unique' => 'Ya existe una cuenta con ese nick')
+                $this->form_validation->set_rules('user_register', 'Nombre de usuario', 'required|min_length[5]|is_unique[user.nick]', 
+            			array('required' => 'El nombre de usuario es necesario.', 'is_unique' => 'Ya existe una cuenta con ese nick', 'min_length' => 'El %s debe contener más de 3 carácteres.')
             	);
                 $this->form_validation->set_rules('email_register', 'Dirección de correo electrónico', 'required|valid_email|is_unique[user.email]',
                         array('required' => 'Es necesario introducir una dirección de correo electrónico.', 'valid_email' => 'La dirección introducida no es válida', 'is_unique' => 'Ya existe una cuenta con esa dirección de correo electrónico')
@@ -62,8 +61,9 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->library('form_validation');
             $this->load->model('elfeisbuc_modelo', '', TRUE);
 
-            $this->form_validation->set_rules('user_login', 'Nombre de usuario', 'required', 
-            			array('required' => 'El nombre de usuario es necesario.')
+            $this->form_validation->set_rules('user_login', 'Nombre de usuario', 'required|min_length[3]', 
+            			array(
+                            'required' => 'El nombre de usuario es necesario.')
             	);
             $this->form_validation->set_rules('pass_login', 'Contraseña', 'required',
                     array('required' => 'Es necesario introducir una contraseña')
@@ -77,8 +77,8 @@ class elfeisbuc_controller extends CI_Controller {
                 else {
 
                 	if ($this->elfeisbuc_modelo->validarUser() == 1){
-			        	$this->load->view('home_view');
-			        	$this->load->view('footer_view');
+                        $this->obtenerTodosMensajes();
+                        $this->load->view('footer_view');
                 	}
 
                 	if ($this->elfeisbuc_modelo->validarUser() == 2){
@@ -93,6 +93,20 @@ class elfeisbuc_controller extends CI_Controller {
         				
 			        }	
                 }                       
+        }
+
+        public function obtenerTodosMensajes() {
+            $this->load->helper('url');
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $data['query'] = $this->elfeisbuc_modelo->obtenerMSG();
+            $this->load->view('home_view', $data);
+        }
+
+        public function obtenerTodosMisMensajes() {
+            $this->load->helper('url');
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $data['query'] = $this->elfeisbuc_modelo->obtenerMsgPropios();
+            $this->load->view('home_view', $data);
         }
 
 }

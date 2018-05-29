@@ -13,6 +13,7 @@
   </head>
   <body>
     <nav class="navbar navbar navbar-expand-lg navbar-feisbuc d-flex justify-content-between align-items-center">
+      <!-- === Links === -->
       <div class="grid_nav_1 links_home ml-3">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
@@ -24,19 +25,35 @@
           <li class="nav-item">
             <a href="#" class="nav-link nav-faisbuc">Mensajes</a>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link nav-faisbuc">Mis fotos</a>
+          </li>
         </ul>
-        
-        
-        
       </div>
+      <!-- === Logo F === -->
       <div class="grid_nav_1 logo_home">
-        <h1>F</h1>
+        <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/formulariologin"><h1>F</h1></a> 
       </div>
+      <!-- === Panel user === -->
       <div class="grid_nav_1 mr-3">
-        <form class="form-inline my-2 my-lg-0">
+        <!-- <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2 rounded-0" type="search" placeholder="Buscar en Feisbuc..." aria-label="Search">
           <button class="btn btn-outline-light my-2 my-sm-0 rounded-0" type="submit">Buscar</button>
-        </form>
+        </form> -->
+        <div class="user_nav">
+          <div class="dropdown">
+            <button class="btn_user dropdown-toggle" type="button" id="drop_user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              #user
+            </button>
+            <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
+              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="#">Ajustes</a>
+              <a class="dropdown-item" href="#">Salir</a>
+            </div>
+            <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
+          </div>
+        </div>
+
       </div>
     </nav>
 
@@ -47,30 +64,27 @@
       </div>
 
       <div class="grid_box_2">
-        <div class="grid_items">
+        <?php 
+
+        foreach ($query->result() as $row) { 
+
+        echo '<div class="grid_items">
           <div class="card rounded-0 mb-3">
           <img class="card-img-top" src="http://lorempixel.com/780/180/" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">titulo</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, ipsam!</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
+            <p class="card-text">' . $row->cuerpo . '</p>
+            <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
           </div>
-        </div>
-        <div class="card rounded-0 mt-3">
-          <img class="card-img-bottom" src="http://lorempixel.com/780/180/" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">titulo 2</h5>
-            <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque amet quidem veniam deserunt, a beatae tenetur minima quae, voluptatem laborum.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
-        </div>
-        </div>
+        </div>';
+        } 
+        ?>
+
       </div>
 
     </div>
     
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

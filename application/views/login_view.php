@@ -32,6 +32,7 @@
 	      <input type="password" name="pass_login" id="pass_login" class="form-control rounded-0 mt-3" placeholder="Contraseña" required>
 	      <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Entrar</button>
 	      <p class="text-center">¿No tienes una cuenta? <br> Regístrate <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/registro">aquí</a>.</p>
+        <?php echo validation_errors(); ?>
 	    </form>
     </div>
 
