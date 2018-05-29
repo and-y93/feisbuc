@@ -66,7 +66,8 @@
         <input type="password" name="pass2_register" id="pass2_register" class="form-control rounded-0 mt-3" placeholder="Confirmar contraseña" required>
         
 	      <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Registrarse</button>
-        <p class="text-center">¿Ya tienes una cuenta? <br> Inicia sesión <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller">aquí</a></p>
+        <p class="text-center">¿Ya tienes una cuenta? <br> Inicia sesión <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/login">aquí</a></p>
+        <?php echo validation_errors(); ?>
       </form>
     </div>
 
