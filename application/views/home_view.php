@@ -1,3 +1,5 @@
+<?php echo $this->session->userdata('nick'); ?>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -73,17 +75,34 @@
         <?php 
         foreach ($query->result() as $row) { 
 
-        echo '<div class="grid_items">
-          <div class="card rounded-0 mb-3 shadow">
-          <img class="card-img-top" src="http://lorempixel.com/780/180/" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
-            <p class="card-text">' . $row->cuerpo . '</p>
-            <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
-          </div>
-          </div>
-        </div>';
-        } 
+          if ($row->imagen != NULL) {
+            echo '<div class="grid_items">
+                  <div class="card rounded-0 mb-3">';
+            $data = $row->imagen;
+            echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
+
+            echo '<div class="card-body">
+              <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
+              <p class="card-text">' . $row->cuerpo . '</p>
+              <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
+            </div>
+            </div>
+          </div>';
+          }
+          
+          else {
+            echo '<div class="grid_items">
+            <div class="card rounded-0 mb-3">';
+            echo '<div class="card-body">
+              <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
+              <p class="card-text">' . $row->cuerpo . '</p>
+              <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
+            </div>
+            </div>
+          </div>';
+          }
+        }
+
         ?>
 
       </div>
