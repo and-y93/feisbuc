@@ -77,8 +77,8 @@ class elfeisbuc_controller extends CI_Controller {
                 else {
 
                 	if ($this->elfeisbuc_modelo->validarUser() == 1){
-			        	$this->load->view('home_view');
-			        	$this->load->view('footer_view');
+                        $this->obtenerTodosMensajes();
+                        $this->load->view('footer_view');
                 	}
 
                 	if ($this->elfeisbuc_modelo->validarUser() == 2){
@@ -93,6 +93,20 @@ class elfeisbuc_controller extends CI_Controller {
         				
 			        }	
                 }                       
+        }
+
+        public function obtenerTodosMensajes() {
+            $this->load->helper('url');
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $data['query'] = $this->elfeisbuc_modelo->obtenerMSG();
+            $this->load->view('home_view', $data);
+        }
+
+        public function obtenerTodosMisMensajes() {
+            $this->load->helper('url');
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $data['query'] = $this->elfeisbuc_modelo->obtenerMsgPropios();
+            $this->load->view('home_view', $data);
         }
 
 }

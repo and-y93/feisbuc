@@ -48,5 +48,30 @@ class elfeisbuc_modelo extends CI_Model
 
   }
 
+
+  public function obtenerMSG() {
+
+    $queryTodosMensajes = $this->db->query('SELECT fecha, titulo, cuerpo, nick_msg FROM msg UNION ALL SELECT fecha_img, titulo_img, img, nick_img FROM img');
+    return $queryTodosMensajes;
+  }
+
+  public function obtenerIMG() {
+
+    $queryTodasImagenes = $this->db->query('SELECT * FROM img');
+    return $queryTodasImagenes;
+  }
+
+  /*public function obtenerMsgPropios() {
+
+    $queryTodosMisMensajes = $this->db->query('SELECT * FROM msg WHERE nick_msg = ' . $user);
+    return $queryTodosMisMensajes;
+  }
+
+  public function obtenerMsgPropios() {
+
+    $queryTodosMisMensajes = $this->db->query('SELECT * FROM msg WHERE nick_msg = ' . $user);
+    return $queryTodosMisMensajes;
+  }*/
+
 }
 ?>

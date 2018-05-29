@@ -47,30 +47,27 @@
       </div>
 
       <div class="grid_box_2">
-        <div class="grid_items">
+        <?php 
+
+        foreach ($query->result() as $row) { 
+
+        echo '<div class="grid_items">
           <div class="card rounded-0 mb-3">
           <img class="card-img-top" src="http://lorempixel.com/780/180/" alt="Card image cap">
           <div class="card-body">
-            <h5 class="card-title">titulo</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, ipsam!</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
+            <p class="card-text">' . $row->cuerpo . '</p>
+            <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
           </div>
-        </div>
-        <div class="card rounded-0 mt-3">
-          <img class="card-img-bottom" src="http://lorempixel.com/780/180/" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">titulo 2</h5>
-            <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque amet quidem veniam deserunt, a beatae tenetur minima quae, voluptatem laborum.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
           </div>
-        </div>
-        </div>
+        </div>';
+        } 
+        ?>
+
       </div>
 
     </div>
     
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
