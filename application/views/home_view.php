@@ -102,6 +102,12 @@
               <!-- === Form Crear mensaje === -->
               <form>
                 <div class="form-group">
+                  <label for="menssage_imagen">Subir imagen</label>
+                  <input type="file" class="form-control-file" id="menssage_imagen">
+
+                  <label for="message_title" class="col-form-label">Título:</label>
+                  <input class="form-control" id="message_title" name="message_title"></input>
+
                   <label for="message_text" class="col-form-label">Mensaje:</label>
                   <textarea class="form-control" id="message_text" name="message_text"></textarea>
                 </div>
