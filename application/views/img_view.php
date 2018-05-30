@@ -73,9 +73,8 @@
       </div>
         
         <?php 
-        foreach ($query->result() as $row) { 
 
-          if ($row->imagen != NULL) {
+        foreach ($query->result() as $row) { 
             echo '<div class="grid_items shadow">
                   <div class="card rounded-0 mb-3">';
             $data = $row->imagen;
@@ -88,20 +87,8 @@
             </div>
             </div>
           </div>';
-          }
-          
-          else {
-            echo '<div class="grid_items shadow">
-            <div class="card rounded-0 mb-3">';
-            echo '<div class="card-body">
-              <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
-              <p class="card-text">' . $row->cuerpo . '</p>
-              <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
-            </div>
-            </div>
-          </div>';
-          }
-        }
+
+       }
 
         ?>
 
