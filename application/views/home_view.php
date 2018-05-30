@@ -87,11 +87,11 @@
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
               <hr/>
-                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . ' " role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
                   Responder
                 </a>
        
-              <div class="collapse" id="collapseExample">
+              <div class="collapse" id="' . $row->id_msg .'">
                 
                   <form>
                     <label for="ask_text" class="col-form-label">Responder:</label>
@@ -114,11 +114,11 @@
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
               <hr/>
-              <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . '" role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
                   Responder
                 </a>
        
-              <div class="collapse" id="collapseExample">
+              <div class="collapse" id="' . $row->id_msg . '">
                 
                   <form>
                     <label for="ask_text" class="col-form-label">Responder:</label>
