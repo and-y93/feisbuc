@@ -76,5 +76,20 @@ class elfeisbuc_modelo extends CI_Model
     return $queryTodosMisMensajes;
   }*/
 
+  public function insertarMensaje() {
+    
+    if (!is_null($this->input->post('message_text'))) {
+
+      $nick = $this->session->userdata('nick');
+      $imagen = $this->input->post('menssage_imagen');
+      $titulo = $this->input->post('message_title');
+      $cuerpo=$this->input->post('message_text');
+
+      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,'imagen' => $imagen);
+                  $this->db->insert('msg', $arrayMensaje);
+         }else {
+      return FALSE; 
+    }
+  }
 }
 ?>

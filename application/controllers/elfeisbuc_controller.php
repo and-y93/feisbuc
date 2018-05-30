@@ -109,4 +109,20 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->view('home_view', $data);
         }
 
+        
+        public function modalController() {
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $this->form_validation->set_rules('message_text', 'Message','required'); 
+
+            if ($this->form_validation->run() !== FALSE) {
+                $this->elfeisbuc_modelo->insertarMensaje();
+                echo "<script>alert('El mensaje se ha insertado.')</script>";
+                $this->obtenerTodosMensajes();
+                $this->load->view('footer_view');
+            }else{
+                echo "<script>alert('El mensaje NO se ha insertado.')</script>";
+            }
+     }
 }

@@ -76,7 +76,7 @@
         foreach ($query->result() as $row) { 
 
           if ($row->imagen != NULL) {
-            echo '<div class="grid_items">
+            echo '<div class="grid_items shadow">
                   <div class="card rounded-0 mb-3">';
             $data = $row->imagen;
             echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
@@ -91,7 +91,7 @@
           }
           
           else {
-            echo '<div class="grid_items">
+            echo '<div class="grid_items shadow">
             <div class="card rounded-0 mb-3">';
             echo '<div class="card-body">
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
@@ -119,10 +119,12 @@
             </div>
             <div class="modal-body">
               <!-- === Form Crear mensaje === -->
-              <form>
+             
+               <?php echo validation_errors();  
+               echo form_open('elfeisbuc_controller/modalController'); ?>
                 <div class="form-group">
                   <label for="menssage_imagen">Subir imagen</label>
-                  <input type="file" class="form-control-file" id="menssage_imagen">
+                  <input type="file" class="form-control-file" name="menssage_imagen" id="menssage_imagen">
 
                   <label for="message_title" class="col-form-label">Título:</label>
                   <input class="form-control" id="message_title" name="message_title"></input>
@@ -130,10 +132,10 @@
                   <label for="message_text" class="col-form-label">Mensaje:</label>
                   <textarea class="form-control" id="message_text" name="message_text"></textarea>
                 </div>
-              </form>
-              <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center">
                 <!-- <button type="button" class="btn btn-secondary btn-sm rounded-0" data-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0">Enviar</button>
+                <button type="submit" class="btn btn-feisbuk btn-sm shadow-sm rounded-0">Enviar</button>
+              </form>
               </div>
             </div>
           </div>
