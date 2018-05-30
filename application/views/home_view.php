@@ -1,5 +1,3 @@
-<?php echo $this->session->userdata('nick'); ?>
-
 <!doctype html>
 <html lang="es">
   <head>
@@ -19,7 +17,7 @@
       <div class="grid_nav_1 links_home ml-3">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/home" class="nav-link nav-faisbuc">Inicio</a>
+            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/home" class="nav-link nav-faisbuc active">Inicio</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link nav-faisbuc">Notificaciones</a>
