@@ -1,5 +1,3 @@
-<?php echo $this->session->userdata('nick'); ?>
-
 <!doctype html>
 <html lang="es">
   <head>
@@ -76,8 +74,11 @@
         foreach ($query->result() as $row) { 
 
           if ($row->imagen != NULL) {
-            echo '<div class="grid_items shadow">
-                  <div class="card rounded-0 mb-3">';
+
+
+            echo '<div class="grid_items">
+                  <div class="card rounded-0 mb-3 shadow">';
+
             $data = $row->imagen;
             echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
 
@@ -85,6 +86,21 @@
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
+              <hr/>
+                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Responder
+                </a>
+       
+              <div class="collapse" id="collapseExample">
+                
+                  <form>
+                    <label for="ask_text" class="col-form-label">Responder:</label>
+                    <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
+                    <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
+                  </form>
+                
+              </div>
+
             </div>
             </div>
           </div>';
@@ -97,6 +113,21 @@
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
+              <hr/>
+              <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  Responder
+                </a>
+       
+              <div class="collapse" id="collapseExample">
+                
+                  <form>
+                    <label for="ask_text" class="col-form-label">Responder:</label>
+                    <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
+                    <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
+                  </form>
+                
+              </div>
+
             </div>
             </div>
           </div>';
@@ -105,6 +136,10 @@
 
         ?>
 
+      </div>
+
+      <div class="grid_box_3">
+        <!-- caja gris -->
       </div>
 
       <!-- === Modal === -->

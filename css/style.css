@@ -117,9 +117,14 @@ body {
   height: 100%;
 }
 
+.grid_box_3{
+  background-color: rgba(219, 219, 219, .3);
+  height: 100%;
+}
+
 .grid_home{
   display: grid;
-  grid-template-columns: 1fr minmax(100px, 3fr);
+  grid-template-columns: 1fr minmax(100px, 3fr) 1fr;
   grid-gap: .3em;
 }
 
