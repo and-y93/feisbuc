@@ -39,7 +39,7 @@ class elfeisbuc_controller extends CI_Controller {
         public function cerrarSesion() {
             $this->load->library('session');
             $this->load->helper(array('form', 'url'));
-            $this->load->view('paginaprincipal_view');
+            $this->index();
             unset($_SESSION['nick']);
         }
 

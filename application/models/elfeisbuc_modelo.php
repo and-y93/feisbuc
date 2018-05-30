@@ -80,15 +80,15 @@ class elfeisbuc_modelo extends CI_Model
       $titulo = $this->input->post('message_title');
       $cuerpo = $this->input->post('message_text');
 
-      if ($imagen == ""){
+      /*if ($imagen == ""){
         $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => NULL);
                   $this->db->insert('msg', $arrayMensaje);
       }
-      else {
+      else {*/
       $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => $imagen);
                   $this->db->insert('msg', $arrayMensaje);
-      }
-      
+      //}
+
     }
 
     else {
