@@ -39,7 +39,7 @@ class elfeisbuc_controller extends CI_Controller {
         public function cerrarSesion() {
             $this->load->library('session');
             $this->load->helper(array('form', 'url'));
-            $this->load->view('paginaprincipal_view');
+            $this->index();
             unset($_SESSION['nick']);
         }
 
@@ -149,4 +149,24 @@ class elfeisbuc_controller extends CI_Controller {
             }
         }
 
+        public function respuestaMensaje() {
+            $this->load->helper(array('form', 'url'));
+            $this->load->library(array('form_validation', 'session'));
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $this->form_validation->set_rules('ask_text', 'Message', 'required'); 
+
+            if ($this->form_validation->run() !== FALSE) {
+                $this->elfeisbuc_modelo->insertarRespuesta();
+                echo "<script>alert('La respuesta se ha insertado.')</script>";
+                $this->obtenerTodosMensajes();
+                $this->load->view('footer_view');
+            }
+
+            else{
+                echo "<script>alert('La respuesta NO se ha insertado. Es necesario introducir un mensaje')</script>";
+                $this->obtenerTodosMensajes();
+                $this->load->view('footer_view');
+            }
+
+        }
 }
