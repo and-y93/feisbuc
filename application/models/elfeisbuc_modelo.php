@@ -2,6 +2,7 @@
 
 class elfeisbuc_modelo extends CI_Model
 {
+
 	public function crearUser()
 	{
 		if (!is_null( $this->input->post('user_register') )&& (!is_null($this->input->post('email_register'))) && (!is_null($this->input->post('email_register'))) ) {
@@ -58,19 +59,13 @@ class elfeisbuc_modelo extends CI_Model
     return $queryTodosMensajes;
   }
 
-  public function obtenerIMG() {
-
-    $queryTodasImagenes = $this->db->query('SELECT * FROM img');
-    return $query;
+  public function obtenerIMGpropias() {
+    $user = $this->session->userdata('nick');
+    $queryTodasMisImagenes = $this->db->query('SELECT * FROM msg WHERE nick_msg = "' . $user . '" AND imagen IS NOT NULL');
+    return $queryTodasMisImagenes;
   }
 
   /*public function obtenerMsgPropios() {
-
-    $queryTodosMisMensajes = $this->db->query('SELECT * FROM msg WHERE nick_msg = ' . $user);
-    return $queryTodosMisMensajes;
-  }
-
-  public function obtenerMsgPropios() {
 
     $queryTodosMisMensajes = $this->db->query('SELECT * FROM msg WHERE nick_msg = ' . $user);
     return $queryTodosMisMensajes;

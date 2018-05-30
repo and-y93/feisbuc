@@ -24,6 +24,20 @@ class elfeisbuc_controller extends CI_Controller {
         	$this->load->view('footer_view');
         }
 
+        public function misimagenes(){
+            $this->load->library('session');
+            $this->load->helper('url');
+            $this->obtenerMisImagenes();
+            $this->load->view('footer_view');
+        }
+
+        public function home(){
+            $this->load->library('session');
+            $this->load->helper('url');
+            $this->obtenerTodosMensajes();
+            $this->load->view('footer_view');
+        }
+
         public function formularioregistro() {
                 $this->load->helper(array('form', 'url'));
                 $this->load->library('form_validation');
@@ -102,11 +116,13 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->view('home_view', $data);
         }
 
-        public function obtenerTodosMisMensajes() {
+        public function obtenerMisImagenes(){
             $this->load->helper('url');
             $this->load->model('elfeisbuc_modelo', '', TRUE);
-            $data['query'] = $this->elfeisbuc_modelo->obtenerMsgPropios();
-            $this->load->view('home_view', $data);
+            $data['query'] = $this->elfeisbuc_modelo->obtenerIMGpropias();
+            $this->load->view('img_view', $data);
+
+
         }
 
         
@@ -125,4 +141,5 @@ class elfeisbuc_controller extends CI_Controller {
                 echo "<script>alert('El mensaje NO se ha insertado.')</script>";
             }
      }
+
 }
