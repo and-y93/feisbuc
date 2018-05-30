@@ -156,7 +156,7 @@
               <!-- === Form Crear mensaje === -->
              
                <?php echo validation_errors();  
-               echo form_open('elfeisbuc_controller/modalController'); ?>
+               echo form_open_multipart('elfeisbuc_controller/modalController'); ?>
                 <div class="form-group">
                   <label for="menssage_imagen">Subir imagen</label>
                   <input type="file" class="form-control-file" name="menssage_imagen" id="menssage_imagen">
