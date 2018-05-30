@@ -55,7 +55,7 @@ class elfeisbuc_modelo extends CI_Model
 
   public function obtenerMsg() {
 
-    $queryTodosMensajes = $this->db->query('SELECT * FROM msg');
+    $queryTodosMensajes = $this->db->query('SELECT * FROM msg ORDER BY fecha DESC');
     return $queryTodosMensajes;
   }
 
@@ -78,11 +78,20 @@ class elfeisbuc_modelo extends CI_Model
       $nick = $this->session->userdata('nick');
       $imagen = $this->input->post('menssage_imagen');
       $titulo = $this->input->post('message_title');
-      $cuerpo=$this->input->post('message_text');
+      $cuerpo = $this->input->post('message_text');
 
-      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,'imagen' => $imagen);
+      if ($imagen == ""){
+        $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => NULL);
                   $this->db->insert('msg', $arrayMensaje);
-         }else {
+      }
+      else {
+      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => $imagen);
+                  $this->db->insert('msg', $arrayMensaje);
+      }
+      
+    }
+
+    else {
       return FALSE; 
     }
   }

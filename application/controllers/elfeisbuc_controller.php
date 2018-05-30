@@ -1,4 +1,3 @@
-
 <?php
 class elfeisbuc_controller extends CI_Controller {
 
@@ -9,8 +8,7 @@ class elfeisbuc_controller extends CI_Controller {
 
 		public function registro(){
 			$this->load->helper(array('form', 'url'));
-        	$this->load->view('register_view');
-		
+        	$this->load->view('register_view');	
 		}
 
         public function login() {
@@ -26,16 +24,23 @@ class elfeisbuc_controller extends CI_Controller {
 
         public function misimagenes(){
             $this->load->library('session');
-            $this->load->helper('url');
+            $this->load->helper(array('form', 'url'));
             $this->obtenerMisImagenes();
             $this->load->view('footer_view');
         }
 
         public function home(){
             $this->load->library('session');
-            $this->load->helper('url');
+            $this->load->helper(array('form', 'url'));
             $this->obtenerTodosMensajes();
             $this->load->view('footer_view');
+        }
+
+        public function cerrarSesion() {
+            $this->load->library('session');
+            $this->load->helper(array('form', 'url'));
+            $this->load->view('paginaprincipal_view');
+            unset($_SESSION['nick']);
         }
 
         public function formularioregistro() {
@@ -121,14 +126,12 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerIMGpropias();
             $this->load->view('img_view', $data);
-
-
         }
 
         
         public function modalController() {
             $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
+            $this->load->library(array('form_validation', 'session'));
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $this->form_validation->set_rules('message_text', 'Message','required'); 
 
@@ -137,9 +140,13 @@ class elfeisbuc_controller extends CI_Controller {
                 echo "<script>alert('El mensaje se ha insertado.')</script>";
                 $this->obtenerTodosMensajes();
                 $this->load->view('footer_view');
-            }else{
-                echo "<script>alert('El mensaje NO se ha insertado.')</script>";
             }
-     }
+
+            else{
+                echo "<script>alert('El mensaje NO se ha insertado. Es necesario introducir un mensaje')</script>";
+                $this->obtenerTodosMensajes();
+                $this->load->view('footer_view');
+            }
+        }
 
 }
