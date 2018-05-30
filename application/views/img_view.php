@@ -1,5 +1,3 @@
-<?php echo $this->session->userdata('nick'); ?>
-
 <!doctype html>
 <html lang="es">
   <head>
@@ -50,7 +48,7 @@
             <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
               <a class="dropdown-item" href="#">Perfil</a>
               <a class="dropdown-item" href="#">Ajustes</a>
-              <a class="dropdown-item" href="#">Salir</a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
             <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
           </div>
@@ -106,10 +104,12 @@
             </div>
             <div class="modal-body">
               <!-- === Form Crear mensaje === -->
-              <form>
+             
+               <?php echo validation_errors();  
+               echo form_open('elfeisbuc_controller/modalController'); ?>
                 <div class="form-group">
                   <label for="menssage_imagen">Subir imagen</label>
-                  <input type="file" class="form-control-file" id="menssage_imagen">
+                  <input type="file" class="form-control-file" name="menssage_imagen" id="menssage_imagen">
 
                   <label for="message_title" class="col-form-label">Título:</label>
                   <input class="form-control" id="message_title" name="message_title"></input>
@@ -117,10 +117,10 @@
                   <label for="message_text" class="col-form-label">Mensaje:</label>
                   <textarea class="form-control" id="message_text" name="message_text"></textarea>
                 </div>
-              </form>
-              <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center">
                 <!-- <button type="button" class="btn btn-secondary btn-sm rounded-0" data-dismiss="modal">Close</button> -->
-                <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0">Enviar</button>
+                <button type="submit" class="btn btn-feisbuk btn-sm shadow-sm rounded-0">Enviar</button>
+              </form>
               </div>
             </div>
           </div>

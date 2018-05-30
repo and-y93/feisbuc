@@ -17,7 +17,7 @@
       <div class="grid_nav_1 links_home ml-3">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/home" class="nav-link nav-faisbuc">Inicio</a>
+            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/home" class="nav-link nav-faisbuc active">Inicio</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link nav-faisbuc">Notificaciones</a>
@@ -48,7 +48,7 @@
             <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
               <a class="dropdown-item" href="#">Perfil</a>
               <a class="dropdown-item" href="#">Ajustes</a>
-              <a class="dropdown-item" href="#">Salir</a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
             <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
           </div>
@@ -73,14 +73,13 @@
         <?php 
         foreach ($query->result() as $row) { 
 
-          if ($row->imagen != NULL) {
-
-
             echo '<div class="grid_items">
                   <div class="card rounded-0 mb-3 shadow">';
 
-            $data = $row->imagen;
-            echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
+            if ($row->imagen != NULL) {
+              $data = $row->imagen;
+              echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
+            }
 
             echo '<div class="card-body">
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
@@ -123,12 +122,12 @@
                   Responder
                 </a>
        
-              <div class="collapse" id="' . $row->id_msg .'">
-                
-                  <form>
-                    <label for="ask_text" class="col-form-label">Responder:</label>
+              <div class="collapse" id="' . $row->id_msg .'">';
+                  $hidden = array("id_msg" => $row->id_msg);
+                  echo form_open("elfeisbuc_controller/respuestaMensaje", '', $hidden) . 
+                    '<label for="ask_text" class="col-form-label">Responder:</label>
                     <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
-                    <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
+                    <button type="submit" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
                   </form>
                 
               </div>
@@ -136,36 +135,8 @@
             </div>
             </div>
           </div>';
-          }
           
-          else {
-            echo '<div class="grid_items shadow">
-            <div class="card rounded-0 mb-3">';
-            echo '<div class="card-body">
-              <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
-              <p class="card-text">' . $row->cuerpo . '</p>
-              <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
-              <hr/>
 
-              <hr/>
-              <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . '" role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
-                  Responder
-                </a>
-       
-              <div class="collapse" id="' . $row->id_msg . '">
-                
-                  <form>
-                    <label for="ask_text" class="col-form-label">Responder:</label>
-                    <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
-                    <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
-                  </form>
-                
-              </div>
-
-            </div>
-            </div>
-          </div>';
-          }
         }
 
         ?>
@@ -190,7 +161,7 @@
               <!-- === Form Crear mensaje === -->
              
                <?php echo validation_errors();  
-               echo form_open('elfeisbuc_controller/modalController'); ?>
+               echo form_open_multipart('elfeisbuc_controller/modalController'); ?>
                 <div class="form-group">
                   <label for="menssage_imagen">Subir imagen</label>
                   <input type="file" class="form-control-file" name="menssage_imagen" id="menssage_imagen">
