@@ -55,7 +55,7 @@ class elfeisbuc_modelo extends CI_Model
 
   public function obtenerMsg() {
 
-    $queryTodosMensajes = $this->db->query('SELECT * FROM msg');
+    $queryTodosMensajes = $this->db->query('SELECT * FROM msg ORDER BY fecha DESC');
     return $queryTodosMensajes;
   }
 
@@ -65,12 +65,6 @@ class elfeisbuc_modelo extends CI_Model
     return $queryTodasMisImagenes;
   }
 
-  /*public function obtenerMsgPropios() {
-
-    $queryTodosMisMensajes = $this->db->query('SELECT * FROM msg WHERE nick_msg = ' . $user);
-    return $queryTodosMisMensajes;
-  }*/
-
   public function insertarMensaje() {
     
     if (!is_null($this->input->post('message_text'))) {
@@ -78,11 +72,38 @@ class elfeisbuc_modelo extends CI_Model
       $nick = $this->session->userdata('nick');
       $imagen = $this->input->post('menssage_imagen');
       $titulo = $this->input->post('message_title');
-      $cuerpo=$this->input->post('message_text');
+      $cuerpo = $this->input->post('message_text');
 
-      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,'imagen' => $imagen);
+      /*if ($imagen == ""){
+        $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => NULL);
                   $this->db->insert('msg', $arrayMensaje);
-         }else {
+      }
+      else {*/
+      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => $imagen);
+                  $this->db->insert('msg', $arrayMensaje);
+      //}
+
+    }
+
+    else {
+      return FALSE; 
+    }
+  }
+
+  public function insertarRespuesta() {
+    
+    if (!is_null($this->input->post('ask_text'))) {
+
+      $nick_rsp = $this->session->userdata('nick');
+      $cuerpo_rsp = $this->input->post('ask_text');
+      $id_padre = $this->input->post('id_msg');
+
+      $arrayRespuesta  = array('cuerpo_rsp' => $cuerpo_rsp, 'id_padre'=> $id_padre, 'nick_rsp'=> $nick_rsp);
+                  $this->db->insert('rsp', $arrayRespuesta);
+
+    }
+
+    else {
       return FALSE; 
     }
   }
