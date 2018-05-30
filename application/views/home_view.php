@@ -73,14 +73,13 @@
         <?php 
         foreach ($query->result() as $row) { 
 
-          if ($row->imagen != NULL) {
-
-
             echo '<div class="grid_items">
                   <div class="card rounded-0 mb-3 shadow">';
 
-            $data = $row->imagen;
-            echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
+            if ($row->imagen != NULL) {
+              $data = $row->imagen;
+              echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
+            }
 
             echo '<div class="card-body">
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
@@ -91,12 +90,12 @@
                   Responder
                 </a>
        
-              <div class="collapse" id="' . $row->id_msg .'">
-                
-                  <form>
-                    <label for="ask_text" class="col-form-label">Responder:</label>
+              <div class="collapse" id="' . $row->id_msg .'">';
+                  $hidden = array("id_msg" => $row->id_msg);
+                  echo form_open("elfeisbuc_controller/respuestaMensaje", '', $hidden) . 
+                    '<label for="ask_text" class="col-form-label">Responder:</label>
                     <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
-                    <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
+                    <button type="submit" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
                   </form>
                 
               </div>
@@ -104,34 +103,7 @@
             </div>
             </div>
           </div>';
-          }
           
-          else {
-            echo '<div class="grid_items shadow">
-            <div class="card rounded-0 mb-3">';
-            echo '<div class="card-body">
-              <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
-              <p class="card-text">' . $row->cuerpo . '</p>
-              <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
-              <hr/>
-              <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . '" role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
-                  Responder
-                </a>
-       
-              <div class="collapse" id="' . $row->id_msg . '">
-                
-                  <form>
-                    <label for="ask_text" class="col-form-label">Responder:</label>
-                    <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
-                    <button type="button" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
-                  </form>
-                
-              </div>
-
-            </div>
-            </div>
-          </div>';
-          }
         }
 
         ?>
