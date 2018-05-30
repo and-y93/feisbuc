@@ -75,6 +75,7 @@
 
           if ($row->imagen != NULL) {
 
+            $numAleatorio = rand(1, 99);
 
             echo '<div class="grid_items">
                   <div class="card rounded-0 mb-3 shadow">';
@@ -87,11 +88,11 @@
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
               <hr/>
-                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . $numAleatorio .' " role="button" aria-expanded="false" aria-controls="' . $row->id_msg . $numAleatorio .'">
                   Responder
                 </a>
        
-              <div class="collapse" id="collapseExample">
+              <div class="collapse" id="' . $row->id_msg . $numAleatorio .'">
                 
                   <form>
                     <label for="ask_text" class="col-form-label">Responder:</label>
@@ -114,11 +115,11 @@
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
               <hr/>
-              <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . $numAleatorio .'" role="button" aria-expanded="false" aria-controls="' . $row->id_msg . $numAleatorio .'">
                   Responder
                 </a>
        
-              <div class="collapse" id="collapseExample">
+              <div class="collapse" id="' . $row->id_msg . $numAleatorio .'">
                 
                   <form>
                     <label for="ask_text" class="col-form-label">Responder:</label>
