@@ -86,6 +86,38 @@
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
+
+              <div class="show_comments">
+                <h4>Comentarios</h4>
+
+                <div class="comment">
+                  <div class="d-flex justify-content-end">
+                    <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="avatar">
+                  </div>
+                  <div class="content_reply d-flex flex-row">
+                    <a href="#">#usuaioReply</a>
+                    <p>Lunes a las 10:00</p>
+                  </div>
+                  <div class="text_reply">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, praesentium.</p>
+                  </div>
+                </div>
+
+                <div class="comment">
+                  <div class="d-flex justify-content-end">
+                    <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="avatar">
+                  </div>
+                  <div class="content_reply d-flex flex-row">
+                    <a href="#">#usuaioReply2</a>
+                    <p>Martes a las 10:00</p>
+                  </div>
+                  <div class="text_reply">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, praesentium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem quod laboriosam, et debitis, suscipit rerum?</p>
+                  </div>
+                </div>
+
+
+              </div>
               <hr/>
                 <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . ' " role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
                   Responder
@@ -113,6 +145,8 @@
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
+              <hr/>
+
               <hr/>
               <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . '" role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
                   Responder
