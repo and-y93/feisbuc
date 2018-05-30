@@ -48,7 +48,7 @@
             <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
               <a class="dropdown-item" href="#">Perfil</a>
               <a class="dropdown-item" href="#">Ajustes</a>
-              <a class="dropdown-item" href="#">Salir</a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
             <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
           </div>
@@ -119,7 +119,7 @@
               <!-- === Form Crear mensaje === -->
              
                <?php echo validation_errors();  
-               echo form_open('elfeisbuc_controller/modalController'); ?>
+               echo form_open_multipart('elfeisbuc_controller/modalController'); ?>
                 <div class="form-group">
                   <label for="menssage_imagen">Subir imagen</label>
                   <input type="file" class="form-control-file" name="menssage_imagen" id="menssage_imagen">

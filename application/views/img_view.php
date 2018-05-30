@@ -48,7 +48,7 @@
             <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
               <a class="dropdown-item" href="#">Perfil</a>
               <a class="dropdown-item" href="#">Ajustes</a>
-              <a class="dropdown-item" href="#">Salir</a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
             <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
           </div>
