@@ -161,3 +161,28 @@ body {
 .btn_user:focus{
   border:solid 1px #fff;
 }
+
+.comment img{
+  height: 30px;
+  width: auto;
+}
+
+.comment{
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-gap: 5px;
+}
+.content_reply a{
+  color: black;
+  font-weight: bold;
+}
+
+.content_reply p{
+  margin: 5px;
+  font-size: .7em;
+  color: rgba(169, 169, 169, 1);
+}
+
+.text_reply{
+  grid-column: 2 / 3;
+}
