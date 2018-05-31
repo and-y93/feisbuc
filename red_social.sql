@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2018 a las 16:05:40
+-- Tiempo de generación: 31-05-2018 a las 18:15:18
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -65,7 +65,8 @@ INSERT INTO `msg` (`id_msg`, `fecha`, `titulo`, `cuerpo`, `nick_msg`, `imagen`) 
 (37, '2018-05-31 13:47:28', '', 'perro1', 'costyn1', 'perro11.jpg'),
 (38, '2018-05-31 13:49:57', '', 'gato2 succes', 'costyn1', 'gato21.jpg'),
 (39, '2018-05-31 14:01:24', '', 'gatito bonito', 'costyn1', 'gato1.jpg'),
-(40, '2018-05-31 14:02:11', '', 'gatito subido', 'costyn1', 'gato4.jpg');
+(40, '2018-05-31 14:02:11', '', 'gatito subido', 'costyn1', 'gato4.jpg'),
+(41, '2018-05-31 14:32:34', 'perrito111', 'wsdfcsdfcxc', 'costan', 'perro12.jpg');
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,10 @@ CREATE TABLE `rsp` (
 INSERT INTO `rsp` (`id_rsp`, `fecha_rsp`, `cuerpo_rsp`, `id_padre`, `nick_rsp`) VALUES
 (1, '2018-05-24 14:08:29', 'En redacción, un texto breve que, en lenguaje simple, transmita información a una persona que se encuentra ausente al momento de redactarlo.', 2, ''),
 (2, '2018-05-24 14:09:30', 'Cualquier pensamiento o idea expresado brevemente, y preparado para su transmisión por cualquier medio de comunicación.', 3, ''),
-(3, '2018-05-24 14:10:24', 'Una cantidad arbitraria de información cuyo inicio y final están definidos o son identificables.', 1, '');
+(3, '2018-05-24 14:10:24', 'Una cantidad arbitraria de información cuyo inicio y final están definidos o son identificables.', 1, ''),
+(4, '2018-05-31 14:14:01', 'respuesta bonito', 40, 'costyn1'),
+(5, '2018-05-31 14:42:55', 'asxcqaxs', 38, 'costan'),
+(6, '2018-05-31 15:33:08', 'asxcqaxs', 38, 'costan');
 
 -- --------------------------------------------------------
 
@@ -99,21 +103,28 @@ INSERT INTO `rsp` (`id_rsp`, `fecha_rsp`, `cuerpo_rsp`, `id_padre`, `nick_rsp`) 
 CREATE TABLE `user` (
   `nick` varchar(40) COLLATE utf8_spanish_ci NOT NULL COMMENT 'user name',
   `email` varchar(80) COLLATE utf8_spanish_ci NOT NULL COMMENT 'email usuario',
-  `datosContacto` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'datos direccion usuario ',
+  `nombre_completo` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `edad` int(3) DEFAULT NULL,
+  `localidad` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `ocupacion` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `biografia` varchar(400) COLLATE utf8_spanish_ci DEFAULT NULL,
   `fecha_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'fecha alta',
   `fecha_baja` timestamp NULL DEFAULT NULL,
-  `pass` varbinary(255) NOT NULL
+  `pass` varbinary(255) NOT NULL,
+  `foto_perfil` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`nick`, `email`, `datosContacto`, `fecha_alta`, `fecha_baja`, `pass`) VALUES
-('andy', 'andres@gmail.com', 'calle binar nr 36, Barcelona', '2018-05-24 13:42:54', NULL, 0x0123),
-('costy', 'constantyn@gmail.com', 'calle santa Nr 90, Valencia', '2018-05-24 13:42:10', NULL, 0x0123),
-('costyn1', 'costyn1@yahoo.com', NULL, '2018-05-25 15:37:32', NULL, 0x313233),
-('rick', 'rickardo@gmail.com', 'Calle avennsis, nr 37 Castellon', '2018-05-24 13:40:58', NULL, 0x0123);
+INSERT INTO `user` (`nick`, `email`, `nombre_completo`, `edad`, `localidad`, `ocupacion`, `biografia`, `fecha_alta`, `fecha_baja`, `pass`, `foto_perfil`) VALUES
+('andy', 'andres@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-24 13:42:54', NULL, 0x313233, NULL),
+('costan', 'costan@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-31 14:30:08', NULL, 0x313233, NULL),
+('costy', 'constantyn@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-24 13:42:10', NULL, 0x313233, NULL),
+('costyn1', 'costyn1@yahoo.com', NULL, NULL, NULL, NULL, NULL, '2018-05-25 15:37:32', NULL, 0x313233, NULL),
+('costyn2', 'costyn2@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-31 15:38:59', NULL, 0x313233, NULL),
+('rick', 'rickardo@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-24 13:40:58', NULL, 0x313233, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -147,13 +158,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `msg`
 --
 ALTER TABLE `msg`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `rsp`
 --
 ALTER TABLE `rsp`
-  MODIFY `id_rsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_rsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
