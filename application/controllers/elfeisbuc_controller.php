@@ -16,10 +16,10 @@ class elfeisbuc_controller extends CI_Controller {
         	$this->load->view('login_view');
         }
 
-        public function mipagina(){
-        	$this->load->helper('url');
-        	$this->load->view('mipagina_view');
-        	$this->load->view('footer_view');
+        public function perfil(){
+            $this->load->library('session');
+        	$this->load->helper(array('form', 'url'));
+        	$this->load->view('perfil_view');
         }
 
         public function misimagenes(){
