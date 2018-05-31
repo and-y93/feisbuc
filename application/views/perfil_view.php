@@ -72,15 +72,80 @@
         <div class="perfil_caja">
           <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar">
           <div class="perfil_datos">
-            <h3>#UserPerfil</h3>
-            <span>Presidente de Feisbuc</span>
-            <hr>
-            <h3>Datos personales</h3>
-            <p>Nombre:</p> <span>#userPerfil</span>
-            <p>Fecha de nacimiento:</p> <span>3/3/2333</span>
-            <p>Ocupación:</p> <span>Presidente Feisbuc</span>
-            <p>Ciudad</p> <span>EE.UU</span>
-            <p>Biografía</p> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sequi nulla, id temporibus vero possimus non alias, maxime. Nobis consequatur veniam voluptates mollitia provident doloremque nisi, laboriosam dolores. Iusto, assumenda?</span>
+
+            <?php 
+            foreach ($consulta->result() as $row) { 
+
+              echo $row->email;
+              $attributes = array('class' => 'form-signin');
+              echo form_open('elfeisbuc_controller/formularioDatosUser', $attributes);
+
+              echo '<h1 class="h3 mb-3 font-weight-normal text-center">Modificar datos</h1>
+              <span>Nick</span>';
+
+              $datosNick = array(
+                'name'          => 'nick_perfil',
+                'value'         => 'johndoe',
+                'class'         => 'form-control',
+                'placeholder'   => 'Nick'
+              );
+              echo form_input($datosNick);?>
+              <br>
+              <span>Nombre completo</span>
+              <?php 
+              $datosNombre = array(
+                'name'          => 'nombre_perfil',
+                'value'         => 'johndoe',
+                'class'         => 'form-control',
+                'placeholder'   => 'Nombre completo'
+              );
+              echo form_input($datosNombre);?>
+              <br>
+              <span>Edad</span>
+              <?php 
+              $datosEdad = array(
+                'name'          => 'edad_perfil',
+                'value'         => 'johndoe',
+                'class'         => 'form-control',
+                'placeholder'   => 'Edad'
+              );
+              echo form_input($datosEdad);?>
+              <br>
+              <span>Localidad</span>
+              <?php 
+              $datosLocalidad = array(
+                'name'          => 'localidad_perfil',
+                'value'         => 'johndoe',
+                'class'         => 'form-control',
+                'placeholder'   => 'Localidad'
+              );
+              echo form_input($datosLocalidad);?>
+              <br>
+              <span>Ocupación</span>
+              <?php 
+              $datosOcupacion = array(
+                'name'          => 'ocupacion_perfil',
+                'value'         => 'johndoe',
+                'class'         => 'form-control',
+                'placeholder'   => 'Ocupación'
+              );
+              echo form_input($datosOcupacion);?>
+              <br>
+              <span>Biografía</span>
+              <?php 
+              $datosBiografia = array(
+                'name'          => 'biografia_perfil',
+                'value'         => 'johndoe',
+                'class'         => 'form-control',
+                'placeholder'   => 'Biografía'
+              );
+              echo form_textarea($datosBiografia);            
+            } ?>
+              <br>
+             
+              <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Actualizar datos</button>
+              <?php echo validation_errors(); ?>
+            </form>
 
           </div>
         </div>
@@ -91,11 +156,7 @@
       </div>
 
       
-    </div>
-
-
-    
-    
+    </div>   
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
