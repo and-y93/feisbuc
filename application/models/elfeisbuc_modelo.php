@@ -66,29 +66,36 @@ class elfeisbuc_modelo extends CI_Model
 
   public function obtenerIMGpropias() {
     $user = $this->session->userdata('nick');
-    $queryTodasMisImagenes = $this->db->query('SELECT * FROM msg WHERE nick_msg = "' . $user . '" AND imagen IS NOT NULL');
+    $queryTodasMisImagenes = $this->db->query('SELECT * FROM msg WHERE nick_msg = "' . $user . '" AND imagen IS NOT NULL ORDER BY fecha DESC');
     return $queryTodasMisImagenes;
   }
 
   public function insertarMensaje($imagen) {
     
     if (!is_null($this->input->post('message_text'))) {
-
+      //$imagen entra como parámetro
       $nick = $this->session->userdata('nick');
-      //$imagen = $this->input->post('menssage_imagen');
       $titulo = $this->input->post('message_title');
       $cuerpo = $this->input->post('message_text');
 
-      
-      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,
-       'imagen' => $imagen);
-                  $this->db->insert('msg', $arrayMensaje);
+      if ($imagen == ""){
+        $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,
+         'imagen' => NULL);
+        $this->db->insert('msg', $arrayMensaje);
+      }  
+
+      else {
+        $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,
+         'imagen' => $imagen);
+        $this->db->insert('msg', $arrayMensaje);
+      }
         
     } 
     
     else {
       return FALSE; 
     }
+
   }
 
   public function insertarRespuesta() {
