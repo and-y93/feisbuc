@@ -47,7 +47,7 @@
               <?php echo $this->session->userdata('nick'); ?>
             </button>
             <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
-              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/perfil">Perfil</a>
               <a class="dropdown-item" href="#">Ajustes</a>
               <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
@@ -68,47 +68,29 @@
 	      <div class="mt-3 d-flex justify-content-center">
 	     	<h1>Perfil</h1>
 	      </div>
+        <hr>
+        <div class="perfil_caja">
+          <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar">
+          <div class="perfil_datos">
+            <h3>#UserPerfil</h3>
+            <span>Presidente de Feisbuc</span>
+            <hr>
+            <h3>Datos personales</h3>
+            <p>Nombre:</p> <span>#userPerfil</span>
+            <p>Fecha de nacimiento:</p> <span>3/3/2333</span>
+            <p>Ocupación:</p> <span>Presidente Feisbuc</span>
+            <p>Ciudad</p> <span>EE.UU</span>
+            <p>Biografía</p> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores sequi nulla, id temporibus vero possimus non alias, maxime. Nobis consequatur veniam voluptates mollitia provident doloremque nisi, laboriosam dolores. Iusto, assumenda?</span>
+
+          </div>
+        </div>
       </div>
 
       <div class="grid_box_3">
         <!-- caja gris -->
       </div>
 
-      <!-- === Modal === -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-          <div class="modal-content rounded-0">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Crear mensaje</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- === Form Crear mensaje === -->
-             
-               <?php echo validation_errors();  
-               echo form_open_multipart('elfeisbuc_controller/modalController'); ?>
-                <div class="form-group">
-                  <label for="menssage_imagen">Subir imagen</label>
-                  <input type="file" class="form-control-file" name="menssage_imagen" id="menssage_imagen">
-
-                  <label for="message_title" class="col-form-label">Título:</label>
-                  <input class="form-control" id="message_title" name="message_title"></input>
-
-                  <label for="message_text" class="col-form-label">Mensaje:</label>
-                  <textarea class="form-control" id="message_text" name="message_text"></textarea>
-                </div>
-                <div class="d-flex justify-content-center">
-                <!-- <button type="button" class="btn btn-secondary btn-sm rounded-0" data-dismiss="modal">Close</button> -->
-                <button type="submit" class="btn btn-feisbuk btn-sm shadow-sm rounded-0">Enviar</button>
-              </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      
     </div>
 
 

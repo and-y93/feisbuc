@@ -18,7 +18,7 @@ class elfeisbuc_controller extends CI_Controller {
 
         public function perfil(){
             $this->load->library('session');
-        	$this->load->helper('url');
+        	$this->load->helper(array('form', 'url'));
         	$this->load->view('perfil_view');
         }
 

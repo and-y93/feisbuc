@@ -46,7 +46,7 @@
               <?php echo $this->session->userdata('nick'); ?>
             </button>
             <div class="dropdown-menu rounded-0" aria-labelledby="drop_user">
-              <a class="dropdown-item" href="#">Perfil</a>
+              <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/perfil">Perfil</a>
               <a class="dropdown-item" href="#">Ajustes</a>
               <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
