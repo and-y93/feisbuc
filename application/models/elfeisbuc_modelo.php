@@ -70,26 +70,22 @@ class elfeisbuc_modelo extends CI_Model
     return $queryTodasMisImagenes;
   }
 
-  public function insertarMensaje() {
+  public function insertarMensaje($imagen) {
     
     if (!is_null($this->input->post('message_text'))) {
 
       $nick = $this->session->userdata('nick');
-      $imagen = $this->input->post('menssage_imagen');
+      //$imagen = $this->input->post('menssage_imagen');
       $titulo = $this->input->post('message_title');
       $cuerpo = $this->input->post('message_text');
 
-      /*if ($imagen == ""){
-        $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => NULL);
+      
+      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,
+       'imagen' => $imagen);
                   $this->db->insert('msg', $arrayMensaje);
-      }
-      else {*/
-      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => $imagen);
-                  $this->db->insert('msg', $arrayMensaje);
-      //}
-
-    }
-
+        
+    } 
+    
     else {
       return FALSE; 
     }
@@ -105,7 +101,6 @@ class elfeisbuc_modelo extends CI_Model
 
       $arrayRespuesta  = array('cuerpo_rsp' => $cuerpo_rsp, 'id_padre'=> $id_padre, 'nick_rsp'=> $nick_rsp);
                   $this->db->insert('rsp', $arrayRespuesta);
-
     }
 
     else {
