@@ -120,7 +120,7 @@ class elfeisbuc_modelo extends CI_Model
     $user = $this->session->userdata('nick');
     $queryDatosUser = $this->db->query('SELECT * FROM user WHERE nick = "' . $user . '"');
     return $queryDatosUser;
-
+}
   public function updateFotoPerfil($fotoPerfil){
       $nick = $this->input->post('nick');
       $arrayFotoPerfil  = array('nick' => $nick ,'foto_perfil' => $fotoPerfil);    
