@@ -114,5 +114,13 @@ class elfeisbuc_modelo extends CI_Model
       return FALSE; 
     }
   }
+
+  public function obtenerDatosUser() {
+    $this->load->library('session');
+    $user = $this->session->userdata('nick');
+    $queryDatosUser = $this->db->query('SELECT * FROM user WHERE nick = "' . $user . '"');
+    return $queryDatosUser;
+
+  }
 }
 ?>
