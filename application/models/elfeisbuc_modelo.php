@@ -114,5 +114,12 @@ class elfeisbuc_modelo extends CI_Model
       return FALSE; 
     }
   }
+
+  public function updateFotoPerfil($fotoPerfil){
+      $nick = $this->input->post('nick');
+      $arrayFotoPerfil  = array('nick' => $nick ,'foto_perfil' => $fotoPerfil);    
+             
+             $this->db->update('user',  $arrayFotoPerfil);
+  }
 }
 ?>
