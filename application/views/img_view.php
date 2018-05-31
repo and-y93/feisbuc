@@ -73,18 +73,70 @@
         <?php 
 
         foreach ($query->result() as $row) { 
-            echo '<div class="grid_items shadow">
-                  <div class="card rounded-0 mb-3">';
             $data = $row->imagen;
-            echo '<div class="img-container"><img src="data:image/jpeg;base64,' . base64_encode($data) . '" class="img-responsive" /></div>';
+              
+            echo '<div class="grid_items">
+                  <div class="card rounded-0 mb-3 shadow">';
+
+            if ($row->imagen != NULL) {
+              
+              echo '<div class="img-container"><img src="'.base_url(). '/uploads/'.$data.'" class="img-responsive" /></div>';
+            }
 
             echo '<div class="card-body">
               <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
               <p class="card-text">' . $row->cuerpo . '</p>
-              <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>
+              <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>';
+
+            if (isset($query2)) { 
+                
+                echo '<div class="show_comments">
+                      <h4>Comentarios</h4>';
+
+              foreach ($query2->result() as $row2) {
+
+                if ($row2->id_padre == $row->id_msg){
+
+                    echo '<div class="comment">
+                        <div class="d-flex justify-content-end">
+                          <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="avatar">
+                        </div>
+                        <div class="content_reply d-flex flex-row">
+                          <a href="#">' . $row2->nick_rsp .'</a>
+                          <p>' . $row2->fecha_rsp .'</p>
+                        </div>
+                        <div class="text_reply">
+                          <p>' . $row2->cuerpo_rsp .'</p>
+                        </div>
+                      </div>
+                    ';
+                }    
+              }
+
+              echo '</div>';
+            }
+
+              echo '<hr/>
+                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . ' " role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
+                  Responder
+                </a>
+       
+              <div class="collapse" id="' . $row->id_msg .'">';
+                  $hidden = array("id_msg" => $row->id_msg);
+                  echo form_open("elfeisbuc_controller/respuestaMensaje", '', $hidden) . 
+                    '<label for="ask_text" class="col-form-label">Responder:</label>
+                    <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
+                    <button type="submit" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
+                  </form>
+                
+              </div>
+
             </div>
             </div>
           </div>';
+          
+
+        
 
        }
 
