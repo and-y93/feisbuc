@@ -118,6 +118,7 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->helper('url');
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerMSG();
+            $data['query2'] = $this->elfeisbuc_modelo->obtenerRsp();
             $this->load->view('home_view', $data);
         }
 
@@ -148,6 +149,7 @@ class elfeisbuc_controller extends CI_Controller {
                 $this->load->view('footer_view');
             }
         }
+
 
         public function respuestaMensaje() {
             $this->load->helper(array('form', 'url'));

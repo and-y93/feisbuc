@@ -49,7 +49,6 @@ class elfeisbuc_modelo extends CI_Model
           return 3;
         }  
       }  
-
   }
 
 
@@ -57,6 +56,12 @@ class elfeisbuc_modelo extends CI_Model
 
     $queryTodosMensajes = $this->db->query('SELECT * FROM msg ORDER BY fecha DESC');
     return $queryTodosMensajes;
+  }
+
+  public function obtenerRsp() {
+
+    $queryRespuestas = $this->db->query('SELECT * FROM rsp ORDER BY fecha_rsp DESC');
+    return $queryRespuestas;
   }
 
   public function obtenerIMGpropias() {
