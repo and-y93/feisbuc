@@ -72,13 +72,15 @@
         
         <?php 
         foreach ($query->result() as $row) { 
-
+          $data = $row->imagen;
+              
+              
             echo '<div class="grid_items">
                   <div class="card rounded-0 mb-3 shadow">';
 
             if ($row->imagen != NULL) {
-              $data = $row->imagen;
-              echo '<div class="img-container"><img src="'.$data.'" class="img-responsive" /></div>';
+              
+              echo '<div class="img-container"><img src="'.base_url(). '/uploads/'.$data.'" class="img-responsive" /></div>';
             }
 
             echo '<div class="card-body">

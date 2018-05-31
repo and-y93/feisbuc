@@ -65,27 +65,18 @@ class elfeisbuc_modelo extends CI_Model
     return $queryTodasMisImagenes;
   }
 
-  public function insertarMensaje() {
+  public function insertarMensaje($imagen) {
     
     if (!is_null($this->input->post('message_text'))) {
 
       $nick = $this->session->userdata('nick');
-      $imagen = $this->input->post('menssage_imagen');
+      //$imagen = $this->input->post('menssage_imagen');
       $titulo = $this->input->post('message_title');
       $cuerpo = $this->input->post('message_text');
 
-
-      $config['upload_path'] = 'C:/xampp2/htdocs/feisbuk/uploads/';
-      $config['allowed_types'] = 'gif|jpg|png';
-      $config['max_size']     = '100';
-      $config['max_width'] = '1024';
-      $config['max_height'] = '768';
-      $this->load->library('upload', $config);
-      $this->upload->do_upload('menssage_imagen');
-      $imagen = $this->upload->data('full_path');
-
       
-      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick, 'imagen' => $imagen);
+      $arrayMensaje  = array('titulo' => $titulo, 'cuerpo'=> $cuerpo, 'nick_msg'=> $nick,
+       'imagen' => $imagen);
                   $this->db->insert('msg', $arrayMensaje);
         
     } 
