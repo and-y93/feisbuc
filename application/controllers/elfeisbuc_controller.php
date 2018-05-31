@@ -16,10 +16,10 @@ class elfeisbuc_controller extends CI_Controller {
         	$this->load->view('login_view');
         }
 
-        public function mipagina(){
-        	$this->load->helper('url');
-        	$this->load->view('mipagina_view');
-        	$this->load->view('footer_view');
+        public function perfil(){
+            $this->load->library('session');
+        	$this->load->helper(array('form', 'url'));
+        	$this->load->view('perfil_view');
         }
 
         public function misimagenes(){
@@ -126,10 +126,41 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->helper('url');
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerIMGpropias();
+            $data['query2'] = $this->elfeisbuc_modelo->obtenerRsp();
             $this->load->view('img_view', $data);
         }
 
-        
+        public function formularioDatosUser() {
+            $this->load->helper(array('form', 'url'));
+            $this->load->library(array('form_validation', 'session'));
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+
+            if ($this->form_validation->run() == FALSE) {
+                        $this->load->helper(array('form', 'url'));
+                        $this->load->view('login_view');
+                        
+                }
+            else {
+
+                if ($this->elfeisbuc_modelo->validarUser() == 1){
+                    $this->obtenerTodosMensajes();
+                    $this->load->view('footer_view');
+                }
+
+                if ($this->elfeisbuc_modelo->validarUser() == 2){
+                    echo "<script>alert('La contraseña introducida no es correcta.')</script>";
+                    $this->load->view('login_view');
+                    
+                }
+
+                else if ($this->elfeisbuc_modelo->validarUser() == 3){
+                    echo "<script>alert('El usuario introducido no existe.')</script>";
+                    $this->load->view('login_view');
+                    
+                }   
+            }                       
+        }
+
         public function modalController() {
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -161,7 +192,6 @@ class elfeisbuc_controller extends CI_Controller {
             }
         }
 
-
         public function respuestaMensaje() {
             $this->load->helper(array('form', 'url'));
             $this->load->library(array('form_validation', 'session'));
@@ -180,6 +210,5 @@ class elfeisbuc_controller extends CI_Controller {
                 $this->obtenerTodosMensajes();
                 $this->load->view('footer_view');
             }
-
         }
 }

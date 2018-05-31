@@ -186,3 +186,21 @@ body {
 .text_reply{
   grid-column: 2 / 3;
 }
+
+/*=== Perfil ===*/
+
+.perfil_caja{
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.perfil_caja img{
+  height: 8rem;
+  width: auto;
+}
+
+.perfil_datos span{
+
+  font-size: .7em;
+  color: rgba(169, 169, 169, 1);
+}
