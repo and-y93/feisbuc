@@ -48,7 +48,7 @@ class elfeisbuc_controller extends CI_Controller {
                 $this->load->library('form_validation');
                 $this->load->model('elfeisbuc_modelo', '', TRUE);
 
-                $this->form_validation->set_rules('user_register', 'Nombre de usuario', 'required|min_length[5]|is_unique[user.nick]', 
+                $this->form_validation->set_rules('user_register', 'Nombre de usuario', 'required|min_length[3]|is_unique[user.nick]', 
             			array('required' => 'El nombre de usuario es necesario.', 'is_unique' => 'Ya existe una cuenta con ese nick', 'min_length' => 'El %s debe contener más de 3 carácteres.')
             	);
                 $this->form_validation->set_rules('email_register', 'Dirección de correo electrónico', 'required|valid_email|is_unique[user.email]',
