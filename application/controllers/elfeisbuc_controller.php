@@ -44,21 +44,34 @@ class elfeisbuc_controller extends CI_Controller {
         }
 
         public function formularioregistro() {
+                $danger_open = '<div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-0" role="alert">';
+                $danger_btn_close = '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>';
                 $this->load->helper(array('form', 'url'));
                 $this->load->library('form_validation');
                 $this->load->model('elfeisbuc_modelo', '', TRUE);
 
-                $this->form_validation->set_rules('user_register', 'Nombre de usuario', 'required|min_length[3]|is_unique[user.nick]', 
-            			array('required' => 'El nombre de usuario es necesario.', 'is_unique' => 'Ya existe una cuenta con ese nick', 'min_length' => 'El %s debe contener más de 3 carácteres.')
+                $this->form_validation->set_rules('user_register', 'Usuario', 'required|min_length[3]|is_unique[user.nick]', 
+            			array(
+                            'required' => $danger_open . 'El nombre de usuario es necesario.'. $danger_btn_close .'</div>', 
+                            'is_unique' => $danger_open . 'Ya existe una cuenta con ese nick'.$danger_btn_close.'</div>', 
+                            'min_length' => $danger_open . 'El %s debe contener más de 3 carácteres.'.$danger_btn_close.'</div>')
             	);
                 $this->form_validation->set_rules('email_register', 'Dirección de correo electrónico', 'required|valid_email|is_unique[user.email]',
-                        array('required' => 'Es necesario introducir una dirección de correo electrónico.', 'valid_email' => 'La dirección introducida no es válida', 'is_unique' => 'Ya existe una cuenta con esa dirección de correo electrónico')
+                        array(
+                            'required' => $danger_open . 'Es necesario introducir una dirección de correo electrónico.'.$danger_btn_close.'</div>', 
+                            'valid_email' => $danger_open . 'La dirección introducida no es válida'.$danger_btn_close.'</div>', 
+                            'is_unique' => $danger_open . 'Ya existe una cuenta con esa dirección de correo electrónico'.$danger_btn_close.'</div>')
                 );
                 $this->form_validation->set_rules('pass_register', 'Contraseña', 'required',
-                        array('required' => 'Es necesario introducir una contraseña')
+                        array(
+                            'required' => $danger_open . 'Es necesario introducir una contraseña'.$danger_btn_close.'</div>')
                 );
                 $this->form_validation->set_rules('pass2_register', 'Confirmar contraseña', 'required|matches[pass_register]',
-                        array('required' => 'Es necesario introducir una contraseña', 'matches' => 'Las contraseñas no coinciden')
+                        array(
+                            'required' => $danger_open . 'Es necesario introducir una contraseña'.$danger_btn_close.'</div>', 
+                            'matches' => $danger_open . 'Las contraseñas no coinciden'.$danger_btn_close.'</div>')
                 );
 
                 if ($this->form_validation->run() == FALSE) {
@@ -74,16 +87,21 @@ class elfeisbuc_controller extends CI_Controller {
         }
 
         public function formulariologin() {
+            $danger_open = '<div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-0" role="alert">';
+            $danger_btn_close = '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>';
+
     		$this->load->helper(array('form', 'url'));
             $this->load->library('form_validation');
             $this->load->model('elfeisbuc_modelo', '', TRUE);
 
-            $this->form_validation->set_rules('user_login', 'Nombre de usuario', 'required|min_length[3]', 
+            $this->form_validation->set_rules('user_login', 'Nombre de usuario', 'required', 
             			array(
-                            'required' => 'El nombre de usuario es necesario.')
+                            'required' => $danger_open . 'El nombre de usuario es necesario.'.$danger_btn_close.'</div>')
             	);
             $this->form_validation->set_rules('pass_login', 'Contraseña', 'required',
-                    array('required' => 'Es necesario introducir una contraseña')
+                    array('required' => $danger_open . 'Es necesario introducir una contraseña'.$danger_btn_close.'</div>')
                 ); 
 
             if ($this->form_validation->run() == FALSE) {

@@ -11,36 +11,11 @@
 
     <title>Feisbuc | Register</title>
 
-    <?php 
-      if(form_error('pass2_register')){ ?>
-        
-        <script>alert('<?php echo strip_tags(form_error("pass2_register"));?>')</script>
-    <?php } ?>
-
-    <?php 
-      if(form_error('email_register')){ ?>
-        
-        <script>alert('<?php echo strip_tags(form_error("email_register"));?>')</script>
-    <?php } ?>
-
-    <?php 
-      if(form_error('user_register')){ ?>
-        
-        <script>alert('<?php echo strip_tags(form_error("user_register"));?>')</script>
-    <?php } ?>
-
-
   </head>
   <body>
     
     <div class="grid_login">
     	<div class="grid_title d-flex justify-content-center align-items-center">
-
-    	<!-- <h1>Feisbuk</h1>
-    	</div>
-	    <form class="form-signin">
-	      <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-	      <h1 class="h3 mb-3 font-weight-normal">Register</h1> -->
 
     		<div class="text-center">
               <a href=" <?php echo base_url(); ?>index.php/elfeisbuc_controller"><h1>Feisbuc</h1></a>
@@ -48,27 +23,32 @@
               <a href=" <?php echo base_url(); ?>index.php/elfeisbuc_controller/login" class="btn btn-success shadow rounded-0 mt-3">Iniciar sesión</a>
         </div>
     	</div>
-	    <?php 
-        $attributes = array('class' => 'form-signin');
-        echo form_open('elfeisbuc_controller/formularioregistro', $attributes);
-      ?>
-	      <h1 class="h3 mb-3 font-weight-normal text-center">Crear cuenta</h1>
-	      <label for="user_register" class="sr-only">User</label>
-	      <input type="text" name="user_register" id="user_register" class="form-control rounded-0" placeholder="Usuario" required autofocus>
-
-        <label for="email_register" class="sr-only">User</label>
-        <input type="email" name="email_register" id="email_register" class="form-control rounded-0 mt-3" placeholder="Correo electrónico" required autofocus>
-
-	      <label for="pass_register" class="sr-only">Password</label>
-	      <input type="password" name="pass_register" id="pass_register" class="form-control rounded-0 mt-3" placeholder="Contraseña" required>
-
-        <label for="pass2_register" class="sr-only">Password</label>
-        <input type="password" name="pass2_register" id="pass2_register" class="form-control rounded-0 mt-3" placeholder="Confirmar contraseña" required>
+	    <div class="grid_form d-flex justify-content-center align-items-center flex-column">
+        <?php 
+                $attributes = array('class' => 'form-signin');
+                echo form_open('elfeisbuc_controller/formularioregistro', $attributes);
+              ?>
+          <h1 class="h3 mb-3 font-weight-normal text-center">Crear cuenta</h1>
+          <label for="user_register" class="sr-only">User</label>
+          <input type="text" name="user_register" id="user_register" class="form-control rounded-0" placeholder="Usuario" required autofocus>
         
-	      <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Registrarse</button>
-        <p class="text-center">¿Ya tienes una cuenta? <br> Inicia sesión <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/login">aquí</a></p>
-        <?php echo validation_errors(); ?>
-      </form>
+                <label for="email_register" class="sr-only">User</label>
+                <input type="email" name="email_register" id="email_register" class="form-control rounded-0 mt-3" placeholder="Correo electrónico" required autofocus>
+        
+          <label for="pass_register" class="sr-only">Password</label>
+          <input type="password" name="pass_register" id="pass_register" class="form-control rounded-0 mt-3" placeholder="Contraseña" required>
+        
+                <label for="pass2_register" class="sr-only">Password</label>
+                <input type="password" name="pass2_register" id="pass2_register" class="form-control rounded-0 mt-3" placeholder="Confirmar contraseña" required>
+                
+          <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Registrarse</button>
+                <p class="text-center">¿Ya tienes una cuenta? <br> Inicia sesión <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/login">aquí</a></p>
+              </form>
+        <div class="grid_errors">
+          <?php echo validation_errors(); ?>
+            
+        </div>
+      </div>
     </div>
 
 

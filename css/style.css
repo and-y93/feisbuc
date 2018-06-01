@@ -27,7 +27,6 @@ body {
   width: 100%;
   max-width: 330px;
   padding: 15px;
-  margin: auto;
 }
 
 .form-signin .checkbox {
@@ -203,4 +202,12 @@ body {
 
   font-size: .7em;
   color: rgba(169, 169, 169, 1);
+}
+
+.alert .alert-danger {
+  font-size: 10px;
+}
+
+.grid_form form{
+  padding: 0;
 }

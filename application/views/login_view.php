@@ -21,19 +21,25 @@
           <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/registro" class="btn btn-warning shadow rounded-0 mt-3">Registrarse</a>
         </div>
     	</div>
-      <?php 
-        $attributes = array('class' => 'form-signin');
-        echo form_open('elfeisbuc_controller/formulariologin', $attributes);
-      ?>
-	      <h1 class="h3 mb-3 font-weight-normal text-center">Iniciar sesión</h1>
-	      <label for="user_login" class="sr-only">Usuaio</label>
-	      <input type="text" name="user_login" id="user_login" class="form-control rounded-0" placeholder="Usuario" required autofocus>
-	      <label for="pass_login" class="sr-only">Contraseña</label>
-	      <input type="password" name="pass_login" id="pass_login" class="form-control rounded-0 mt-3" placeholder="Contraseña" required>
-	      <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Entrar</button>
-	      <p class="text-center">¿No tienes una cuenta? <br> Regístrate <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/registro">aquí</a>.</p>
-        <?php echo validation_errors(); ?>
-	    </form>
+      <div class="grid_form d-flex justify-content-center align-items-center flex-column">
+        <?php 
+          $attributes = array('class' => 'form-signin');
+          echo form_open('elfeisbuc_controller/formulariologin', $attributes);
+        ?>
+  	      <h1 class="h3 mb-3 font-weight-normal text-center">Iniciar sesión</h1>
+  	      <label for="user_login" class="sr-only">Usuaio</label>
+  	      <input type="text" name="user_login" id="user_login" class="form-control rounded-0" placeholder="Usuario" required autofocus>
+  	      <label for="pass_login" class="sr-only">Contraseña</label>
+  	      <input type="password" name="pass_login" id="pass_login" class="form-control rounded-0 mt-3" placeholder="Contraseña" required>
+  	      <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Entrar</button>
+  	      <p class="text-center">¿No tienes una cuenta? <br> Regístrate <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/registro">aquí</a>.</p>
+          <?php echo validation_errors(); ?>
+  	    </form>
+        <div class="grid_errors">
+          <?php echo validation_errors(); ?>
+            
+        </div>
+      </div>
     </div>
 
 
