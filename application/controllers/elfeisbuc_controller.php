@@ -126,6 +126,17 @@ class elfeisbuc_controller extends CI_Controller {
         }
 
         public function formularioDatosUser() {
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']     = '100';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('menssage_imagen');
+            $fotoPerfil = $this->upload->data('file_name');
+
+             $this->elfeisbuc_modelo->updateFotoPerfil($fotoPerfil);
+             
             $this->load->helper(array('form', 'url'));
             $this->load->library(array('form_validation', 'session'));
             $this->load->model('elfeisbuc_modelo', '', TRUE);
@@ -196,16 +207,4 @@ class elfeisbuc_controller extends CI_Controller {
             }
         }
 
-        public function subirFotoPerfil() {
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']     = '100';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-            $this->load->library('upload', $config);
-            $this->upload->do_upload('menssage_imagen');
-            $fotoPerfil = $this->upload->data('file_name');
-
-             $this->elfeisbuc_modelo->updateFotoPerfil($fotoPerfil);
-        }
 }

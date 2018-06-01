@@ -78,14 +78,18 @@
 
               echo $row->email;
               $attributes = array('class' => 'form-signin');
-              echo form_open('elfeisbuc_controller/formularioDatosUser', $attributes);
+              echo form_open_multipart('elfeisbuc_controller/formularioDatosUser', $attributes);
 
               echo '<h1 class="h3 mb-3 font-weight-normal text-center">Modificar datos</h1>
-              <span>Nick</span>';
+              <br>';
 
+              echo '<label for="menssage_imagen">Cambiar foto perfil</label>
+                  <input type="file" class="form-control-file" name="foto_perfil"/><br>
+                  <span>Nick</span><br>';
+              
               $datosNick = array(
                 'name'          => 'nick_perfil',
-                'value'         => 'johndoe',
+                'value'         => $this->session->userdata("nick"),
                 'class'         => 'form-control',
                 'placeholder'   => 'Nick'
               );
