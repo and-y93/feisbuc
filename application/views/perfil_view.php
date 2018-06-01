@@ -74,83 +74,79 @@
           <div class="perfil_datos">
 
             <?php 
-            foreach ($consulta->result() as $row) { 
+           echo validation_errors();
+          foreach ($consulta->result() as $row) { 
+          echo $row->nick;
 
-              echo $row->email;
+        }
               $attributes = array('class' => 'form-signin');
               echo form_open_multipart('elfeisbuc_controller/formularioDatosUser', $attributes);
-
+              
               echo '<h1 class="h3 mb-3 font-weight-normal text-center">Modificar datos</h1>
               <br>';
 
               echo '<label for="menssage_imagen">Cambiar foto perfil</label>
-                  <input type="file" class="form-control-file" name="foto_perfil"/><br>
-                  <span>Nick</span><br>';
+                  <input type="file" class="form-control" name="foto_perfil"/>"'.$row->foto_perfil.'"<br>
+                  <span>Email:</span><br>';
               
-              $datosNick = array(
-                'name'          => 'nick_perfil',
-                'value'         => $this->session->userdata("nick"),
+              $datosEmail = array(
+                'name'          => 'email_perfil',
+                'value'         => $row->email,
                 'class'         => 'form-control',
-                'placeholder'   => 'Nick'
+                'placeholder'   => 'Email'
               );
-              echo form_input($datosNick);?>
-              <br>
-              <span>Nombre completo</span>
-              <?php 
+              echo form_input($datosEmail); 
+              echo "<br><span>Nombre completo</span>"; 
+
               $datosNombre = array(
                 'name'          => 'nombre_perfil',
-                'value'         => 'johndoe',
+                'value'         =>  $row->nombre_completo,
                 'class'         => 'form-control',
                 'placeholder'   => 'Nombre completo'
               );
-              echo form_input($datosNombre);?>
-              <br>
-              <span>Edad</span>
-              <?php 
+              echo form_input($datosNombre);
+              echo " <br><span>Edad</span>";
+               
               $datosEdad = array(
                 'name'          => 'edad_perfil',
-                'value'         => 'johndoe',
+                'value'         =>  $row->edad,
                 'class'         => 'form-control',
                 'placeholder'   => 'Edad'
               );
-              echo form_input($datosEdad);?>
-              <br>
-              <span>Localidad</span>
-              <?php 
+              echo form_input($datosEdad);
+              echo "<br><span>Localidad</span>";
+              
               $datosLocalidad = array(
                 'name'          => 'localidad_perfil',
-                'value'         => 'johndoe',
+                'value'         =>  $row->localidad,
                 'class'         => 'form-control',
                 'placeholder'   => 'Localidad'
               );
-              echo form_input($datosLocalidad);?>
-              <br>
-              <span>Ocupación</span>
-              <?php 
+              echo form_input($datosLocalidad);
+              echo "<br><span>Ocupación</span>";
+              
               $datosOcupacion = array(
                 'name'          => 'ocupacion_perfil',
-                'value'         => 'johndoe',
+                'value'         =>  $row->ocupacion,
                 'class'         => 'form-control',
                 'placeholder'   => 'Ocupación'
               );
-              echo form_input($datosOcupacion);?>
-              <br>
-              <span>Biografía</span>
-              <?php 
-              $datosBiografia = array(
-                'name'          => 'biografia_perfil',
-                'value'         => 'johndoe',
-                'class'         => 'form-control',
-                'placeholder'   => 'Biografía'
-              );
-              echo form_textarea($datosBiografia);            
-            } ?>
+              echo form_input($datosOcupacion);
+              echo "<br><span>Biografía</span>";
+             
+                $datosBiografia = array(
+                  'name'          => 'biografia_perfil',
+                  'value'         =>  $row->biografia,
+                  'class'         => 'form-control',
+                  'placeholder'   => 'Biografía'
+                );
+                echo form_textarea($datosBiografia);            
+    
+            ?>
               <br>
              
               <button class="btn btn-lg btn-feisbuk btn-block rounded-0 shadow-sm" type="submit">Actualizar datos</button>
-              <?php echo validation_errors(); ?>
             </form>
-
           </div>
         </div>
       </div>

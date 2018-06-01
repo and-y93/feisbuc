@@ -120,12 +120,22 @@ class elfeisbuc_modelo extends CI_Model
     $user = $this->session->userdata('nick');
     $queryDatosUser = $this->db->query('SELECT * FROM user WHERE nick = "' . $user . '"');
     return $queryDatosUser;
-}
-  public function updateFotoPerfil($fotoPerfil){
-      $nick = $this->input->post('nick');
-      $arrayFotoPerfil  = array('nick' => $nick ,'foto_perfil' => $fotoPerfil);    
-             
-             $this->db->update('user',  $arrayFotoPerfil);
+  }
+
+  public function updatePerfil($fotoPerfil){
+      $nick  = $this->session->userdata('nick');
+
+      $email = $this->input->post('email_perfil');
+      $nombre_completo = $this->input->post('nombre_perfil');
+      $edad = $this->input->post('edad_perfil');
+      $localidad = $this->input->post('localidad_perfil');
+      $ocupacion = $this->input->post('ocupacion_perfil');
+      $biografia = $this->input->post('biografia_perfil');
+      $foto_perfil = $this->input->post('foto_perfil');
+
+      $arrayPerfil  = array('email' => $email,'nombre_completo' => $nombre_completo,'edad' => $edad,'localidad' => $localidad,'ocupacion' => $ocupacion,'biografia' => $biografia,'foto_perfil' => $fotoPerfil);    
+             $this->db->where(array('nick' => $nick));
+             $this->db->update('user',  $arrayPerfil);
 
   }
 }
