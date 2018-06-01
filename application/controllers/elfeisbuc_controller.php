@@ -19,7 +19,7 @@ class elfeisbuc_controller extends CI_Controller {
         public function perfil(){
             $this->load->library('session');
         	$this->load->helper(array('form', 'url'));
-        	$this->load->view('perfil_view');
+        	$this->formularioDatosUser();
         }
 
         public function misimagenes(){
@@ -63,15 +63,13 @@ class elfeisbuc_controller extends CI_Controller {
 
                 if ($this->form_validation->run() == FALSE) {
             			$this->load->helper(array('form', 'url'));
-        				$this->load->view('register_view');
-        				
+        				$this->load->view('register_view');		
                 }
                 else {
                 		$this->elfeisbuc_modelo->crearUser();
                 		echo "<script>alert('El usuario ha sido creado con éxito.')</script>";
                     	$this->load->helper('url');
-        				$this->load->view('login_view');
-        				
+        				$this->load->view('login_view');	
                 }
         }
 
@@ -90,8 +88,7 @@ class elfeisbuc_controller extends CI_Controller {
 
             if ($this->form_validation->run() == FALSE) {
             			$this->load->helper(array('form', 'url'));
-        				$this->load->view('login_view');
-        				
+        				$this->load->view('login_view');		
                 }
                 else {
 
@@ -102,14 +99,12 @@ class elfeisbuc_controller extends CI_Controller {
 
                 	if ($this->elfeisbuc_modelo->validarUser() == 2){
                 		echo "<script>alert('La contraseña introducida no es correcta.')</script>";
-        				$this->load->view('login_view');
-        				
+        				$this->load->view('login_view');	
                 	}
 
                 	else if ($this->elfeisbuc_modelo->validarUser() == 3){
                 		echo "<script>alert('El usuario introducido no existe.')</script>";
-        				$this->load->view('login_view');
-        				
+        				$this->load->view('login_view');	
 			        }	
                 }                       
         }
@@ -126,10 +121,43 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->helper('url');
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerIMGpropias();
+            $data['query2'] = $this->elfeisbuc_modelo->obtenerRsp();
             $this->load->view('img_view', $data);
         }
 
-        
+        public function formularioDatosUser() {
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']     = '100';
+            $config['max_width'] = '1024';
+            $config['max_height'] = '768';
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('menssage_imagen');
+            $fotoPerfil = $this->upload->data('file_name');
+
+             $this->elfeisbuc_modelo->updateFotoPerfil($fotoPerfil);
+             
+            $this->load->helper(array('form', 'url'));
+            $this->load->library(array('form_validation', 'session'));
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+
+            $this->form_validation->set_rules('nick_perfil', 'Nombre de usuario', 'required|min_length[3]', 
+                        array(
+                            'required' => 'El nombre de usuario es necesario.')
+                );
+
+            /*if ($this->form_validation->run() == FALSE) {
+                $this->load->helper(array('form', 'url'));
+                echo "<script>alert('Ha habido un error en la petición, vuelva a intentarlo.')</script>";
+                $this->load->view('perfil_view');     
+            }
+            else {*/
+                
+                $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser();
+                $this->load->view('perfil_view', $data);
+            //}                       
+        }
+
         public function modalController() {
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|png';
@@ -139,7 +167,6 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->library('upload', $config);
             $this->upload->do_upload('menssage_imagen');
             $imagen = $this->upload->data('file_name');
-           
 
             $this->load->helper(array('form', 'url'));
             $this->load->library(array('form_validation', 'session'));
@@ -148,7 +175,6 @@ class elfeisbuc_controller extends CI_Controller {
 
             if ($this->form_validation->run() !== FALSE) {
                  $this->elfeisbuc_modelo->insertarMensaje($imagen);
-                
                 echo "<script>alert('El mensaje se ha insertado.')</script>";
                 $this->obtenerTodosMensajes();
                 $this->load->view('footer_view');
@@ -160,7 +186,6 @@ class elfeisbuc_controller extends CI_Controller {
                 $this->load->view('footer_view');
             }
         }
-
 
         public function respuestaMensaje() {
             $this->load->helper(array('form', 'url'));
@@ -180,6 +205,6 @@ class elfeisbuc_controller extends CI_Controller {
                 $this->obtenerTodosMensajes();
                 $this->load->view('footer_view');
             }
-
         }
+
 }
