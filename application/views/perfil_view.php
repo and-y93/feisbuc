@@ -24,7 +24,7 @@
             <a href="#" class="nav-link nav-faisbuc">Notificaciones</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link nav-faisbuc">Mensajes</a>
+            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/mensajes" class="nav-link nav-faisbuc">Mensajes</a>
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/misimagenes" class="nav-link nav-faisbuc">Mis fotos</a>
@@ -78,6 +78,7 @@
         <hr>
         <div class="perfil_caja">
             <?php 
+
             echo validation_errors();
              foreach ($consulta->result() as $row) { 
              $data = $row->foto_perfil;
