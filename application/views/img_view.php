@@ -50,7 +50,15 @@
               <a class="dropdown-item" href="#">Ajustes</a>
               <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
-            <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
+             <?php
+            
+              foreach ($consulta->result() as $row_user) { 
+                               $data_user = $row_user->foto_perfil;
+                    }                                          
+                   echo '<img src="'.base_url(). '/uploads/'.$data_user.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>';
+              
+            
+            ?>
           </div>
         </div>
 
@@ -92,6 +100,10 @@
                 
                 echo '<div class="show_comments">
                       <h4>Comentarios</h4>';
+                foreach ($consulta->result() as $row_user) { 
+                               $data_user = $row_user->foto_perfil;
+                    }                                          
+                   
 
               foreach ($query2->result() as $row2) {
 
@@ -99,8 +111,8 @@
 
                     echo '<div class="comment">
                         <div class="d-flex justify-content-end">
-                          <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="avatar">
-                        </div>
+                      <img src="'.base_url(). '/uploads/'.$data_user.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>
+                      </div>
                         <div class="content_reply d-flex flex-row">
                           <a href="#">' . $row2->nick_rsp .'</a>
                           <p>' . $row2->fecha_rsp .'</p>

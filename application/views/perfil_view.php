@@ -51,10 +51,17 @@
               <a class="dropdown-item" href="#">Ajustes</a>
               <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
-            <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
+            <?php 
+             foreach ($consulta->result() as $row) { 
+             $data = $row->foto_perfil;
+              if ($data != NULL) {
+              
+              echo '<div class="img-container"><img src="'.base_url(). '/uploads/'.$data.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>';
+            };
+        }  
+            ?>
           </div>
         </div>
-
       </div>
     </nav>
 
@@ -70,15 +77,18 @@
 	      </div>
         <hr>
         <div class="perfil_caja">
-          <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar">
-          <div class="perfil_datos">
-
             <?php 
-           echo validation_errors();
-          foreach ($consulta->result() as $row) { 
-          echo $row->nick;
-
-        }
+            echo validation_errors();
+             foreach ($consulta->result() as $row) { 
+             $data = $row->foto_perfil;
+              if ($data != NULL) {
+              
+              echo '<img src="'.base_url(). '/uploads/'.$data.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>';
+              echo '<div class="perfil_datos">';
+              echo $row->nick;
+            };
+        }  
+            
               $attributes = array('class' => 'form-signin');
               echo form_open_multipart('elfeisbuc_controller/formularioDatosUser', $attributes);
               

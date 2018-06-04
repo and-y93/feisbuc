@@ -59,8 +59,9 @@ class elfeisbuc_modelo extends CI_Model
   }
 
   public function obtenerRsp() {
-
-    $queryRespuestas = $this->db->query('SELECT * FROM rsp ORDER BY fecha_rsp DESC');
+// que devuelva tb la direccion de la imagen
+    $queryRespuestas = $this->db->query('SELECT rsp.*, user.foto_perfil FROM `rsp`, user WHERE rsp.nick_rsp=user.nick ORDER BY fecha_rsp DESC');
+    
     return $queryRespuestas;
   }
 
@@ -119,6 +120,11 @@ class elfeisbuc_modelo extends CI_Model
     $this->load->library('session');
     $user = $this->session->userdata('nick');
     $queryDatosUser = $this->db->query('SELECT * FROM user WHERE nick = "' . $user . '"');
+    return $queryDatosUser;
+  }
+
+  public function obtenerDatosUnUser($nick_usr) {    
+    $queryDatosUser = $this->db->query('SELECT * FROM user WHERE nick = "' . $nick_usr . '"');
     return $queryDatosUser;
   }
 

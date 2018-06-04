@@ -35,13 +35,6 @@
     
     <div class="grid_login">
     	<div class="grid_title d-flex justify-content-center align-items-center">
-
-    	<!-- <h1>Feisbuk</h1>
-    	</div>
-	    <form class="form-signin">
-	      <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-	      <h1 class="h3 mb-3 font-weight-normal">Register</h1> -->
-
     		<div class="text-center">
               <a href=" <?php echo base_url(); ?>index.php/elfeisbuc_controller"><h1>Feisbuc</h1></a>
               <h3>Es gratis y sin anuncios</h3>

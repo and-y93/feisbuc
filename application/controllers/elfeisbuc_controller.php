@@ -114,6 +114,7 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerMSG();
             $data['query2'] = $this->elfeisbuc_modelo->obtenerRsp();
+            $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser();
             $this->load->view('home_view', $data);
         }
 
@@ -122,6 +123,7 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerIMGpropias();
             $data['query2'] = $this->elfeisbuc_modelo->obtenerRsp();
+            $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser();
             $this->load->view('img_view', $data);
         }
 
@@ -130,7 +132,7 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->helper(array('form', 'url'));
             $this->load->model('elfeisbuc_modelo', '', TRUE);
 
-/
+
             $this->form_validation->set_rules('email_perfil', 'Dirección de correo electrónico', 'required|valid_email|is_unique[user.email]',
                         array('required' => 'Es necesario introducir una dirección de correo electrónico.', 'valid_email' => 'La dirección introducida no es válida', 'is_unique' => 'Ya existe una cuenta con esa dirección de correo electrónico'));
 
@@ -152,11 +154,9 @@ class elfeisbuc_controller extends CI_Controller {
            
                 $fotoPerfil = $this->upload->data('file_name');
 
-             
-
                 $this->elfeisbuc_modelo->updatePerfil($fotoPerfil);
 
-                $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser($this->session->userdata('nick'));
+                $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser();
                 $this->load->view('perfil_view', $data);
             }                       
         }
