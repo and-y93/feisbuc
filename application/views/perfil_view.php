@@ -24,7 +24,7 @@
             <a href="#" class="nav-link nav-faisbuc">Notificaciones</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link nav-faisbuc">Mensajes</a>
+            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/mensajes" class="nav-link nav-faisbuc">Mensajes</a>
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/misimagenes" class="nav-link nav-faisbuc">Mis fotos</a>
@@ -75,10 +75,11 @@
 
             <?php 
            echo validation_errors();
-          foreach ($consulta->result() as $row) { 
-          echo $row->nick;
 
-        }
+            foreach ($consulta->result() as $row) { 
+              echo $row->nick;
+
+            }
               $attributes = array('class' => 'form-signin');
               echo form_open_multipart('elfeisbuc_controller/formularioDatosUser', $attributes);
               
