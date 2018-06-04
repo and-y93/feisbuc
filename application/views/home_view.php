@@ -50,10 +50,19 @@
               <a class="dropdown-item" href="#">Ajustes</a>
               <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
-            <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
-          </div>
+            <?php
+            if (isset($consulta)) {
+              foreach ($consulta->result() as $row_user) { 
+                               $data_user = $row_user->foto_perfil;
+                                if ($data_user != NULL) {
+                                
+                                echo '<img src="'.base_url(). '/uploads/'.$data_user.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>';
+                              };
+                          }  
+            }
+            ?>
+           </div>
         </div>
-
       </div>
     </nav>
 
@@ -73,8 +82,7 @@
         <?php 
         foreach ($query->result() as $row) { 
           $data = $row->imagen;
-              
-              
+
             echo '<div class="grid_items">
                   <div class="card rounded-0 mb-3 shadow">';
 
@@ -98,9 +106,12 @@
                 if ($row2->id_padre == $row->id_msg){
 
                     echo '<div class="comment">
-                        <div class="d-flex justify-content-end">
-                          <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="avatar">
-                        </div>
+                        <div class="d-flex justify-content-end">';
+                          
+                                echo '<img src="'.base_url(). '/uploads/'.$row2->foto_perfil.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>';
+                          
+                        
+                       echo '</div>
                         <div class="content_reply d-flex flex-row">
                           <a href="#">' . $row2->nick_rsp .'</a>
                           <p>' . $row2->fecha_rsp .'</p>
