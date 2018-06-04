@@ -114,6 +114,7 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerMSG();
             $data['query2'] = $this->elfeisbuc_modelo->obtenerRsp();
+            $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser();
             $this->load->view('home_view', $data);
         }
 
@@ -122,40 +123,42 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->model('elfeisbuc_modelo', '', TRUE);
             $data['query'] = $this->elfeisbuc_modelo->obtenerIMGpropias();
             $data['query2'] = $this->elfeisbuc_modelo->obtenerRsp();
+            $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser();
             $this->load->view('img_view', $data);
         }
 
         public function formularioDatosUser() {
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']     = '100';
-            $config['max_width'] = '1024';
-            $config['max_height'] = '768';
-            $this->load->library('upload', $config);
-            $this->upload->do_upload('menssage_imagen');
-            $fotoPerfil = $this->upload->data('file_name');
-
-             $this->elfeisbuc_modelo->updateFotoPerfil($fotoPerfil);
-             
-            $this->load->helper(array('form', 'url'));
             $this->load->library(array('form_validation', 'session'));
+            $this->load->helper(array('form', 'url'));
             $this->load->model('elfeisbuc_modelo', '', TRUE);
 
-            $this->form_validation->set_rules('nick_perfil', 'Nombre de usuario', 'required|min_length[3]', 
-                        array(
-                            'required' => 'El nombre de usuario es necesario.')
-                );
 
-            /*if ($this->form_validation->run() == FALSE) {
-                $this->load->helper(array('form', 'url'));
-                echo "<script>alert('Ha habido un error en la petición, vuelva a intentarlo.')</script>";
-                $this->load->view('perfil_view');     
-            }
-            else {*/
+            $this->form_validation->set_rules('email_perfil', 'Dirección de correo electrónico', 'required|valid_email|is_unique[user.email]',
+                        array('required' => 'Es necesario introducir una dirección de correo electrónico.', 'valid_email' => 'La dirección introducida no es válida', 'is_unique' => 'Ya existe una cuenta con esa dirección de correo electrónico'));
+
+            if (($this->form_validation->run() === FALSE)) {
                 
+                echo "<script>alert('Ha habido un error en la validación, vuelva a intentarlo.')</script>";
+
+                $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser($this->session->userdata('nick'));
+                $this->load->view('perfil_view', $data);
+            }
+            else {
+                $config['upload_path'] = './uploads/';
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size']     = '100';
+                $config['max_width'] = '1024';
+                $config['max_height'] = '768';
+                $this->load->library('upload', $config);
+                $this->upload->do_upload('foto_perfil');
+           
+                $fotoPerfil = $this->upload->data('file_name');
+
+                $this->elfeisbuc_modelo->updatePerfil($fotoPerfil);
+
                 $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser();
                 $this->load->view('perfil_view', $data);
-            //}                       
+            }                       
         }
 
         public function modalController() {
