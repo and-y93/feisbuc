@@ -23,7 +23,7 @@
             <a href="#" class="nav-link nav-faisbuc">Notificaciones</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link nav-faisbuc">Mensajes</a>
+            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/mensajes" class="nav-link nav-faisbuc">Mensajes</a>
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/misimagenes" class="nav-link nav-faisbuc">Mis fotos</a>
@@ -109,6 +109,7 @@
 
                 if ($row2->id_padre == $row->id_msg){
 
+
                     echo '<div class="comment">
                         <div class="d-flex justify-content-end">
                       <img src="'.base_url(). '/uploads/'.$data_user.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>
@@ -120,8 +121,8 @@
                         <div class="text_reply">
                           <p>' . $row2->cuerpo_rsp .'</p>
                         </div>
-                      </div>
-                    ';
+                    </div>
+                  ';
                 }    
               }
 

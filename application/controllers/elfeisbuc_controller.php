@@ -36,6 +36,16 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->view('footer_view');
         }
 
+        public function mensajes(){
+            $this->load->library('session');
+            $this->load->helper(array('form', 'url'));
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $data['query'] = $this->elfeisbuc_modelo->obtenerPVD();
+            $data['query2'] = $this->elfeisbuc_modelo->obtenerPVD();
+            $this->load->view('mensajes_view', $data);
+            $this->load->view('footer_view');
+        }    
+
         public function cerrarSesion() {
             $this->load->library('session');
             $this->load->helper(array('form', 'url'));
@@ -133,12 +143,12 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->model('elfeisbuc_modelo', '', TRUE);
 
 
+
             $this->form_validation->set_rules('email_perfil', 'Dirección de correo electrónico', 'required|valid_email',
                         array('required' => 'Es necesario introducir una dirección de correo electrónico.', 'valid_email' => 'La dirección introducida no es válida'));
 
             if (($this->form_validation->run() === FALSE)) {
-                
-               
+       
                 $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser($this->session->userdata('nick'));
                 $this->load->view('perfil_view', $data);
             }
@@ -207,4 +217,22 @@ class elfeisbuc_controller extends CI_Controller {
             }
         }
 
+        public function respuestaPVD() {
+            $this->load->helper(array('form', 'url'));
+            $this->load->library(array('form_validation', 'session'));
+            $this->load->model('elfeisbuc_modelo', '', TRUE);
+            $this->form_validation->set_rules('ask_text', 'Message', 'required'); 
+
+            if ($this->form_validation->run() !== FALSE) {
+                $this->elfeisbuc_modelo->insertarRespuestaPVD();
+                $this->obtenerTodosMensajes();
+                $this->load->view('footer_view');
+            }
+
+            else{
+                echo "<script>alert('La respuesta NO se ha insertado. Es necesario introducir un mensaje')</script>";
+                $this->obtenerTodosMensajes();
+                $this->load->view('footer_view');
+            }
+        }
 }

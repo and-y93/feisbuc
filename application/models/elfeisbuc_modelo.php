@@ -3,8 +3,7 @@
 class elfeisbuc_modelo extends CI_Model
 {
 
-	public function crearUser()
-	{
+	public function crearUser(){
 		if (!is_null( $this->input->post('user_register') )&& (!is_null($this->input->post('email_register'))) && (!is_null($this->input->post('email_register'))) ) {
 
       $nick  = $this->input->post('user_register');
@@ -24,8 +23,7 @@ class elfeisbuc_modelo extends CI_Model
     }
 	}
 
-  public function validarUser()
-  {
+  public function validarUser(){
       $nick = $this->input->post('user_login');
       $pass = $this->input->post('pass_login');
 
@@ -50,7 +48,6 @@ class elfeisbuc_modelo extends CI_Model
         }  
       }  
   }
-
 
   public function obtenerMsg() {
 
@@ -96,7 +93,6 @@ class elfeisbuc_modelo extends CI_Model
     else {
       return FALSE; 
     }
-
   }
 
   public function insertarRespuesta() {
@@ -109,6 +105,24 @@ class elfeisbuc_modelo extends CI_Model
 
       $arrayRespuesta  = array('cuerpo_rsp' => $cuerpo_rsp, 'id_padre'=> $id_padre, 'nick_rsp'=> $nick_rsp);
                   $this->db->insert('rsp', $arrayRespuesta);
+    }
+
+    else {
+      return FALSE; 
+    }
+  }
+
+  public function insertarRespuestaPVD() {
+    
+    if (!is_null($this->input->post('ask_text'))) {
+
+      $nick_emi = $this->session->userdata('nick');
+      $nick_rec = $this->input->post('nick_rec');
+      $cuerpo_rsp_pvd = $this->input->post('ask_text');
+      $id_padre = $this->input->post('id_pvd');
+
+      $arrayRespuestaPVD  = array('cuerpo_rsp_pvd' => $cuerpo_rsp_pvd, 'id_pvd_padre'=> $id_padre, 'nick_emisor'=> $nick_emi, 'nick_receptor'=> $nick_rec);
+                  $this->db->insert('rsp_pvd', $arrayRespuestaPVD);
     }
 
     else {
@@ -142,7 +156,20 @@ class elfeisbuc_modelo extends CI_Model
       $arrayPerfil  = array('email' => $email,'nombre_completo' => $nombre_completo,'edad' => $edad,'localidad' => $localidad,'ocupacion' => $ocupacion,'biografia' => $biografia,'foto_perfil' => $fotoPerfil);    
              $this->db->where(array('nick' => $nick));
              $this->db->update('user',  $arrayPerfil);
+  }
 
+  public function obtenerPVD(){
+    $this->load->library('session');
+    $user = $this->session->userdata('nick');
+    $queryPVD = $this->db->query('SELECT * FROM pvd WHERE nick_receptor = "' . $user . '"');
+    return $queryPVD;
+  }
+
+  public function obtenerRSP_PVD(){
+    $this->load->library('session');
+    $user = $this->session->userdata('nick');
+    $queryPVD = $this->db->query('SELECT * FROM pvd WHERE nick_receptor = "' . $user . '"');
+    return $queryPVD;
   }
 }
 ?>

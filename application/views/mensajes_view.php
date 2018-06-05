@@ -23,7 +23,7 @@
             <a href="#" class="nav-link nav-faisbuc">Notificaciones</a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/mensajes" class="nav-link nav-faisbuc">Mensajes</a>
+            <a href="#" class="nav-link nav-faisbuc">Mensajes</a>
           </li>
           <li class="nav-item">
             <a href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/misimagenes" class="nav-link nav-faisbuc">Mis fotos</a>
@@ -50,19 +50,10 @@
               <a class="dropdown-item" href="#">Ajustes</a>
               <a class="dropdown-item" href="<?php echo base_url(); ?>index.php/elfeisbuc_controller/cerrarSesion">Salir</a>
             </div>
-            <?php
-            if (isset($consulta)) {
-              foreach ($consulta->result() as $row_user) { 
-                               $data_user = $row_user->foto_perfil;
-                                if ($data_user != NULL) {
-                                
-                                echo '<img src="'.base_url(). '/uploads/'.$data_user.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>';
-                              };
-                          }  
-            }
-            ?>
-           </div>
+            <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" class="avatar_user mr-3">
+          </div>
         </div>
+
       </div>
     </nav>
 
@@ -81,37 +72,24 @@
         
         <?php 
         foreach ($query->result() as $row) { 
-          $data = $row->imagen;
-
+              
             echo '<div class="grid_items">
                   <div class="card rounded-0 mb-3 shadow">';
 
-            if ($row->imagen != NULL) {
-              
-              echo '<div class="img-container"><img src="'.base_url(). '/uploads/'.$data.'" class="img-responsive" /></div>';
-            }
-
             echo '<div class="card-body">
-              <h5 class="card-title">' . $row->nick_msg . ' dice: ' . $row->titulo . '</h5>
+              <h5 class="card-title">' . $row->nick_emisor . ' dice: ' . $row->asunto . '</h5>
               <p class="card-text">' . $row->cuerpo . '</p>
               <p class="card-text"><small class="text-muted">' .$row->fecha . '</small></p>';
 
-            if (isset($query2)) { 
-                
-                echo '<div class="show_comments">
-                      <h4>Comentarios</h4>';
-
+            
               foreach ($query2->result() as $row2) {
 
                 if ($row2->id_padre == $row->id_msg){
 
                     echo '<div class="comment">
-                        <div class="d-flex justify-content-end">';
-                          
-                                echo '<img src="'.base_url(). '/uploads/'.$row2->foto_perfil.'" class="avatar_user mr-3 img-responsive" alt ="Avatar"/>';
-                          
-                        
-                       echo '</div>
+                        <div class="d-flex justify-content-end">
+                          <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="avatar">
+                        </div>
                         <div class="content_reply d-flex flex-row">
                           <a href="#">' . $row2->nick_rsp .'</a>
                           <p>' . $row2->fecha_rsp .'</p>
@@ -122,26 +100,21 @@
                       </div>
                     ';
                 }    
-              }
-
-              echo '</div>';
-            }
+              }  
 
               echo '<hr/>
-                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_msg . ' " role="button" aria-expanded="false" aria-controls="' . $row->id_msg . '">
+                <a class="btn btn-feisbuk rounded-0 shadow-sm mb-2" data-toggle="collapse" href="#' . $row->id_pvd . ' " role="button" aria-expanded="false" aria-controls="' . $row->id_pvd . '">
                   Responder
                 </a>
        
-              <div class="collapse" id="' . $row->id_msg .'">';
-                  $hidden = array("id_msg" => $row->id_msg);
-                  echo form_open("elfeisbuc_controller/respuestaMensaje", '', $hidden) . 
+              <div class="collapse" id="' . $row->id_pvd .'">';
+                  $hidden = array("id_pvd" => $row->id_pvd, "nick_rec" => $row->nick_emisor);
+                  echo form_open("elfeisbuc_controller/respuestaPVD", '', $hidden) . 
                     '<label for="ask_text" class="col-form-label">Responder:</label>
                     <textarea class="form-control rounded-0" id="ask_text" name="ask_text"></textarea>
                     <button type="submit" class="btn btn-feisbuk btn-sm shadow-sm rounded-0 mt-3">Enviar</button>
                   </form>
-                
               </div>
-
             </div>
             </div>
           </div>';
