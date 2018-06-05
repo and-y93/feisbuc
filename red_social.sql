@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2018 a las 18:15:18
+-- Tiempo de generación: 05-06-2018 a las 16:30:22
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -66,7 +66,9 @@ INSERT INTO `msg` (`id_msg`, `fecha`, `titulo`, `cuerpo`, `nick_msg`, `imagen`) 
 (38, '2018-05-31 13:49:57', '', 'gato2 succes', 'costyn1', 'gato21.jpg'),
 (39, '2018-05-31 14:01:24', '', 'gatito bonito', 'costyn1', 'gato1.jpg'),
 (40, '2018-05-31 14:02:11', '', 'gatito subido', 'costyn1', 'gato4.jpg'),
-(41, '2018-05-31 14:32:34', 'perrito111', 'wsdfcsdfcxc', 'costan', 'perro12.jpg');
+(41, '2018-05-31 14:32:34', 'perrito111', 'wsdfcsdfcxc', 'costan', 'perro12.jpg'),
+(42, '2018-06-04 16:01:47', 'Hola a todos', 'Hola a todos', 'gustavo', NULL),
+(43, '2018-06-05 13:58:51', 'tirulo perete', 'sdaggf', 'andy', 'perro22.jpg');
 
 -- --------------------------------------------------------
 
@@ -92,7 +94,18 @@ INSERT INTO `rsp` (`id_rsp`, `fecha_rsp`, `cuerpo_rsp`, `id_padre`, `nick_rsp`) 
 (3, '2018-05-24 14:10:24', 'Una cantidad arbitraria de información cuyo inicio y final están definidos o son identificables.', 1, ''),
 (4, '2018-05-31 14:14:01', 'respuesta bonito', 40, 'costyn1'),
 (5, '2018-05-31 14:42:55', 'asxcqaxs', 38, 'costan'),
-(6, '2018-05-31 15:33:08', 'asxcqaxs', 38, 'costan');
+(6, '2018-05-31 15:33:08', 'asxcqaxs', 38, 'costan'),
+(7, '2018-06-01 13:38:44', 'rtghr', 41, 'andy'),
+(8, '2018-06-04 15:37:29', 'qsxdqsx', 4, 'andy'),
+(9, '2018-06-04 15:57:31', 'sdvsdv', 5, 'andy'),
+(10, '2018-06-04 16:01:01', 'Esto es malo.', 38, 'gustavo'),
+(11, '2018-06-04 16:02:34', 'eso', 42, 'gustavo'),
+(12, '2018-06-04 16:25:57', 'Un punto menos.', 41, 'andy'),
+(13, '2018-06-04 16:26:20', 'Dos puntos menos.', 42, 'andy'),
+(14, '2018-06-05 13:43:21', 'comentario', 42, 'costan'),
+(15, '2018-06-05 13:48:29', 'respuesta', 2, 'rick'),
+(16, '2018-06-05 13:58:03', 'respuesta ', 40, 'andy'),
+(17, '2018-06-05 13:59:55', 'respuesta tutor', 43, 'gustavo');
 
 -- --------------------------------------------------------
 
@@ -119,12 +132,12 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`nick`, `email`, `nombre_completo`, `edad`, `localidad`, `ocupacion`, `biografia`, `fecha_alta`, `fecha_baja`, `pass`, `foto_perfil`) VALUES
-('andy', 'andres@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-24 13:42:54', NULL, 0x313233, NULL),
-('costan', 'costan@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-31 14:30:08', NULL, 0x313233, NULL),
-('costy', 'constantyn@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-24 13:42:10', NULL, 0x313233, NULL),
-('costyn1', 'costyn1@yahoo.com', NULL, NULL, NULL, NULL, NULL, '2018-05-25 15:37:32', NULL, 0x313233, NULL),
-('costyn2', 'costyn2@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-31 15:38:59', NULL, 0x313233, NULL),
-('rick', 'rickardo@gmail.com', NULL, NULL, NULL, NULL, NULL, '2018-05-24 13:40:58', NULL, 0x313233, NULL);
+('andy', 'andre@gmail.com', 'john smith', 25, 'Castellón', 'Informático', 'desaokmwoeiow', '2018-05-24 13:42:54', NULL, 0x313233, 'perro14.jpg'),
+('costan', 'costan12@gmail.com', '', 0, '', '', '', '2018-05-31 14:30:08', NULL, 0x313233, 'perro31.jpg'),
+('costy', 'constantyn@gmail.com', '', 0, '', '', '', '2018-05-24 13:42:10', NULL, 0x313233, 'librosLogo_(1).jpg'),
+('costyn1', 'costyn1@yahoo.com', '', 0, '', '', '', '2018-05-25 15:37:32', NULL, 0x313233, 'gato33.jpg'),
+('gustavo', 'gus@gmail.com', '', 0, '', '', 'Tras años en una cueva, sali de allí para hacer palomitas.', '2018-06-04 15:59:07', NULL, 0x313233, 'gato62.jpg'),
+('rick', 'rickardo@gmail.com', '', 0, '', '', '', '2018-05-24 13:40:58', NULL, 0x313233, 'perro21.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -158,13 +171,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `msg`
 --
 ALTER TABLE `msg`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `rsp`
 --
 ALTER TABLE `rsp`
-  MODIFY `id_rsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_rsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Restricciones para tablas volcadas

@@ -141,10 +141,14 @@ class elfeisbuc_controller extends CI_Controller {
             $this->load->library(array('form_validation', 'session'));
             $this->load->helper(array('form', 'url'));
             $this->load->model('elfeisbuc_modelo', '', TRUE);
-            $this->form_validation->set_rules('email_perfil', 'Dirección de correo electrónico', 'required|valid_email|is_unique[user.email]',
-                        array('required' => 'Es necesario introducir una dirección de correo electrónico.', 'valid_email' => 'La dirección introducida no es válida', 'is_unique' => 'Ya existe una cuenta con esa dirección de correo electrónico'));
+
+
+
+            $this->form_validation->set_rules('email_perfil', 'Dirección de correo electrónico', 'required|valid_email',
+                        array('required' => 'Es necesario introducir una dirección de correo electrónico.', 'valid_email' => 'La dirección introducida no es válida'));
 
             if (($this->form_validation->run() === FALSE)) {
+       
                 $data['consulta'] = $this->elfeisbuc_modelo->obtenerDatosUser($this->session->userdata('nick'));
                 $this->load->view('perfil_view', $data);
             }
@@ -182,7 +186,7 @@ class elfeisbuc_controller extends CI_Controller {
             $this->form_validation->set_rules('message_text', 'Message','required'); 
 
             if ($this->form_validation->run() !== FALSE) {
-                $this->elfeisbuc_modelo->insertarMensaje($imagen);
+                 $this->elfeisbuc_modelo->insertarMensaje($imagen);
                 $this->obtenerTodosMensajes();
                 $this->load->view('footer_view');
             }
